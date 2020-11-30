@@ -10,6 +10,8 @@ var signupRouter = require('./routers/signup');
 var catalogRouter = require('./routers/catalog');
 var productRouter = require('./routers/product');
 
+require('./database/db');
+
 var app = express();
 
 // view engine setup
