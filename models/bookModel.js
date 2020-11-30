@@ -2,10 +2,12 @@ const {db} = require('../database/db');
 const { ObjectId} = require('mongodb');
 
 exports.list = async () => {
-    console.log('model db');
-    const booksCollection = await db().collection('books');
-    const books = await booksCollection.find({}).toArray();
-    console.dir(books);
+    let booksss = db.getbooks();
+    console.log(booksss);
+    // const booksCollection = await db().collection('books');
+    // const books = await booksCollection.find({}).toArray();
+    // console.dir(books);
+    
     return books;
 }
 

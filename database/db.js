@@ -1,22 +1,40 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://new-user132:Ryg5uZEPeTyJtx0v@cluster0.on5vo.mongodb.net/books_library?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useUnifiedTopology: true });
+let abc;
 
-let database;
-
-async function connectDb(){
-    await client.connect();
-    // Establish and verify connection
-    database = await client.db("books_library");
-    console.log(database);
-    console.log('Db connected!');
+async function main(){
+    const uri = "mongodb+srv://new-user132:Ryg5uZEPeTyJtx0v@cluster0.on5vo.mongodb.net/books_library?retryWrites=true&w=majority"; 
+    const client = new MongoClient(uri); 
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+ 
+        // Make the appropriate DB calls
+        await  listDatabases(client);
+ 
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
 }
 
-console.log('RUNNING DB...');
+main().catch(console.error);
 
-connectDb();
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+ 
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+    abc = await client.db("books_library").collection("books").find({}).toArray();
+    //console.log(abc);
+};
 
-const db = () => database;
+exports.getbooks = async () => {
+    const bookss = await client.db("books_library").collection("books").find({}).toArray();
+    return bookss;
+}
+
+const db = () => abc;
 
 module.exports.db = db;
