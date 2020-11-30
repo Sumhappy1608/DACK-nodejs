@@ -9,6 +9,7 @@ async function connectDb(){
     await client.connect();
     // Establish and verify connection
     database = await client.db("books_library");
+    console.log(database);
     console.log('Db connected!');
 }
 
