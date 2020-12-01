@@ -492,7 +492,7 @@
         <div class="col-sm-9 products">
           <div class="row">
 
-        {{#each books}}
+        {{!-- {{#each books}}
             <div class="col-sm-6 col-md-4 product">
               <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
               <a href="./"><img src="{{picture}}" alt="{{title}}"/></a>
@@ -501,6 +501,25 @@
                 <h1 class="h4">{{title}}</h1>
                 <p class="price">${{basePrice}}</p>
                 <label>{{type}}</label>
+
+                <form action="/product" method="GET">
+                    <button id="id" type="submit" name="product" value={{_id}} class="btn btn-link">Detail</button>
+                    <!--<a href="" method ="GET" class="btn btn-link"> Details</a>-->
+                </form>
+                
+                <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+              </div>
+            </div>
+        {{/each}} --}}
+
+        {{#each laptops}}
+            <div class="col-sm-6 col-md-4 product">
+              <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+              <img src="{{image}}" alt="{{name}}"/>
+
+              <div class="content">
+                <h1 class="h4">{{name}}</h1>
+                <p class="price">{{price}}</p>
 
                 <form action="/product" method="GET">
                     <button id="id" type="submit" name="product" value={{_id}} class="btn btn-link">Detail</button>
