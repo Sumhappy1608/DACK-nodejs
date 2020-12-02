@@ -515,11 +515,11 @@
         {{#each laptops}}
             <div class="col-sm-6 col-md-4 product">
               <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-              <img src="{{image}}" alt="{{name}}"/>
+              <img src="{{image}}" alt="{{name}}" style="width:250px; height:200px;"/>
 
               <div class="content">
-                <h1 class="h4">{{name}}</h1>
-                <p class="price">{{price}}</p>
+                <h1 class="h4" style="font-size: 11px;">{{name}}</h1>
+                <p class="price" >{{price}}</p>
 
                 <form action="/product" method="GET">
                     <button id="id" type="submit" name="product" value={{_id}} class="btn btn-link">Detail</button>
