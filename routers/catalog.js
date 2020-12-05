@@ -5,6 +5,8 @@ const catalog = catalogController.index;
 
 router.get('/', catalog);
 
+router.get('/:page', catalogController.paginate);
+
 router.get('/product', (req, res) => {
     let id = req.query.product;
     res.redirect('/product/?product=' + id);
