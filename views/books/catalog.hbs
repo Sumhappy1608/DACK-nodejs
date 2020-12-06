@@ -651,24 +651,28 @@
 
           <nav>
             <ul class="pagination">
-              {{#if 0 == 1}}
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
-                </a>
-              </li>
+              {{#if first}}
+                <li><a href="/catalog/?page=1">First</a></li>
               {{/if}}
-              <li><a href="/catalog/1">1</a></li>
-              <li><a href="/catalog/2">2</a></li>
-              <li><a href="/catalog/3">3</a></li>
-              <li class="disabled"><a href="#">..</a></li>
-              <li><a href="/catalog/10">10</a></li>
-              {{#if 0 == 1}}
-              <li>
-                <a href="#" aria-label="Next">
+              {{#if prev}}
+                <li>
+                  <a href="/catalog/?page={{prevPage}}" aria-label="Previous">
+                    <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+                  </a>
+                </li>
+                <li><a href="/catalog/?page={{prevPage}}">{{prevPage}}</a></li>
+              {{/if}}
+                <li><a class="active" href="/catalog/?page=1">{{page}}</a></li>
+              {{#if next}}
+                <li><a href="/catalog/?page={{nextPage}}">{{nextPage}}</a></li>
+                <li>
+                <a href="/catalog/?page={{nextPage}}" aria-label="Next">
                   <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
                 </a>
               </li>
+              {{/if}}
+              {{#if last}}
+                <li><a href="/catalog/?page={{pages}}">Last</a></li>
               {{/if}}
             </ul>
           </nav>
