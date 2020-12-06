@@ -651,21 +651,25 @@
 
           <nav>
             <ul class="pagination">
+              {{#if 0 == 1}}
               <li>
                 <a href="#" aria-label="Previous">
                   <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
                 </a>
               </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
+              {{/if}}
+              <li><a href="/catalog/1">1</a></li>
+              <li><a href="/catalog/2">2</a></li>
+              <li><a href="/catalog/3">3</a></li>
               <li class="disabled"><a href="#">..</a></li>
-              <li><a href="#">10</a></li>
+              <li><a href="/catalog/10">10</a></li>
+              {{#if 0 == 1}}
               <li>
                 <a href="#" aria-label="Next">
                   <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
                 </a>
               </li>
+              {{/if}}
             </ul>
           </nav>
         </div>
