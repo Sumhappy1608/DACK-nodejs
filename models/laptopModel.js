@@ -39,3 +39,4 @@ exports.getPerPage = async (page) => {
     const ret = {laptops: laptops, first:first, prev: prev, prevPage:prevPage, Page: Page, nextPage: nextPage, next: next, last: last, pages:pages}
     return ret;
 };
+

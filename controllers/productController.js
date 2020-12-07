@@ -6,3 +6,4 @@ exports.index = async (req, res, next) => {
     console.log(laptop);
     res.render('books/product', {laptop});
 }
+

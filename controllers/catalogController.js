@@ -5,6 +5,10 @@ exports.index = async (req, res, next) => {
 }
 
 exports.paginate = async (req, res, next) => {
+    let brand = req.query.laptop_brand;
+    console.log("brand="+brand);
+    let type = req.query.laptop_type;
+    console.log("type="+type);
     const returnObject = await laptopModel.getPerPage(req.query.page);
     console.log(returnObject);
     res.render('books/catalog', {laptops: returnObject.laptops,
