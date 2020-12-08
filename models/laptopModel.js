@@ -15,12 +15,8 @@ exports.get = async (id) => {
     return laptop;
 }
 
-<<<<<<< HEAD
 /*Search By Name*/
 exports.searchName = async(page, nameV, typeV, brandV) => {
-=======
-exports.getPerPage = async (page, nameV, typeV, brandV) => {
->>>>>>> e06fc158f39c02c1a2c97e6d4d201ca83f0b0547
     const laptopCollection = db().collection('laptops');
     // const laptop = await laptopCollection.findOne({name: name});
     // return laptop;
@@ -28,7 +24,6 @@ exports.getPerPage = async (page, nameV, typeV, brandV) => {
     let perPage = 5;
     let Page = +page || 1;
     let pages;
-<<<<<<< HEAD
     let laptops
     // if(nameV){
     //     pages = Math.ceil(await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}}).count() / perPage);
@@ -59,7 +54,6 @@ exports.getPerPage = async (page, nameV, typeV, brandV) => {
     }
     else{
         pages = Math.ceil(await laptopCollection.find({}).count() / perPage);
-=======
     let laptops;
     if (typeV == null)
     {
@@ -95,7 +89,6 @@ exports.getPerPage = async (page, nameV, typeV, brandV) => {
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
->>>>>>> e06fc158f39c02c1a2c97e6d4d201ca83f0b0547
 
         laptops = await laptopCollection.find({}) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
@@ -171,4 +164,3 @@ exports.getPerPage = async (page, nameV, typeV, brandV) => {
     const ret = {laptops: laptops, first:first, prev: prev, prevPage:prevPage, Page: Page, nextPage: nextPage, next: next, last: last, pages:pages}
     return ret;
 }*/
-
