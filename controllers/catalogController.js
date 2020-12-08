@@ -4,13 +4,18 @@ exports.index = async (req, res, next) => {
     res.render('books/catalog', {laptops});
 }
 
-exports.paginate = async (req, res, next) => {
-    let brand = req.query.laptop_brand;
-    console.log("brand="+brand);
-    let type = req.query.laptop_type;
-    console.log("type="+type);
-    const returnObject = await laptopModel.getPerPage(req.query.page);
-    console.log(returnObject);
+exports.searchbyName = async (req, res, next) => {
+    var brand = req.query.laptop_brand;
+    var type = req.query.laptop_type;
+    if (brand == "All Brand" || brand == "Brand")
+    {
+        brand = '';
+    }
+    if (type == "All Type" || type == "Type")
+    {
+        type = '';
+    }
+    const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand);
     res.render('books/catalog', {laptops: returnObject.laptops,
         first: returnObject.first,
         prev: returnObject.prev,
@@ -19,5 +24,8 @@ exports.paginate = async (req, res, next) => {
         next: returnObject.next,
         nextPage: returnObject.nextPage,
         last: returnObject.last,
-        pages: returnObject.pages});
+        pages: returnObject.pages,
+        searchName: req.query.searchName,
+        laptop_type: type,
+        laptop_brand: brand});
 }

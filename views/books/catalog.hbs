@@ -684,27 +684,27 @@
           <nav>
             <ul class="pagination">
               {{#if first}}
-              <li><a href="/catalog/?page=1">First</a></li>
+                <li><a href="/catalog/?page=1&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">First</a></li>
               {{/if}}
               {{#if prev}}
-              <li>
-                <a href="/catalog/?page={{prevPage}}" aria-label="Previous">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
-                </a>
-              </li>
-              <li><a href="/catalog/?page={{prevPage}}">{{prevPage}}</a></li>
+                <li>
+                  <a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}" aria-label="Previous">
+                    <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+                  </a>
+                </li>
+                <li><a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">{{prevPage}}</a></li>
               {{/if}}
-              <li><a class="active" href="/catalog/?page=1">{{page}}</a></li>
+                <li><a class="active" href="/catalog/?page={{page}}">{{page}}</a></li>
               {{#if next}}
-              <li><a href="/catalog/?page={{nextPage}}">{{nextPage}}</a></li>
-              <li>
-                <a href="/catalog/?page={{nextPage}}" aria-label="Next">
+                <li><a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">{{nextPage}}</a></li>
+                <li>
+                <a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}" aria-label="Next">
                   <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
                 </a>
               </li>
               {{/if}}
               {{#if last}}
-              <li><a href="/catalog/?page={{pages}}">Last</a></li>
+                <li><a href="/catalog/?page={{pages}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">Last</a></li>
               {{/if}}
             </ul>
           </nav>
