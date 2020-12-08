@@ -21,7 +21,15 @@ exports.searchName = async(page, nameV, typeV, brandV) => {
     let perPage = 5;
     let Page = +page || 1;
     let pages;
-    let laptops
+    let laptops;
+    if (brandV == null)
+    {
+        brandV = '';
+    }
+    if (typeV == null)
+    {
+        typeV = '';
+    }
 
     if(nameV){
         pages = Math.ceil(await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}}).count() / perPage);
