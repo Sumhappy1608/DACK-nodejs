@@ -313,20 +313,20 @@
     <!--/.container-fluid -->
   </nav>
   <hr class="offset-lg">
-<form action="/catalog/search-action" method="GET">
-  <div class="container tags">
-    <div class="btn-group pull-right">
-      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        <i class="ion-arrow-down-b"></i> Sorting by name
-      </button>
-      <ul class="dropdown-menu">
-        <li class="active"><a href="#"> <i class="ion-arrow-down-c"></i> Name [A-Z]</a></li>
-        <li><a href="#"> <i class="ion-arrow-up-c"></i> Name [Z-A]</a></li>
-        <li><a href="#"> <i class="ion-arrow-down-c"></i> Price [Low-High]</a></li>
-        <li><a href="#"> <i class="ion-arrow-up-c"></i> Price [High-Low]</a></li>
-      </ul>
-    </div>
+  <form action="/catalog/search-action" method="GET">
+    <div class="container tags">
+      <div class="btn-group pull-right">
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="ion-arrow-down-b"></i> Sorting by name
+        </button>
+        <ul class="dropdown-menu">
+          <li class="active"><a href="#"> <i class="ion-arrow-down-c"></i> Name [A-Z]</a></li>
+          <li><a href="#"> <i class="ion-arrow-up-c"></i> Name [Z-A]</a></li>
+          <li><a href="#"> <i class="ion-arrow-down-c"></i> Price [Low-High]</a></li>
+          <li><a href="#"> <i class="ion-arrow-up-c"></i> Price [High-Low]</a></li>
+        </ul>
+      </div>
 
       <p>Search by brands</p>
       <div class="btn-group" data-toggle="buttons">
@@ -356,9 +356,9 @@
         </label>
       </div>
       <input type="submit">
-  </div>
+    </div>
 
-  
+
     <div class="container">
       <div class="row">
         <!-- Filter -->
@@ -393,7 +393,7 @@
                 </div>-->
             </div>
           </div>
-      
+
           <br>
 
           <div class="item">
@@ -519,12 +519,12 @@
           </div>
         </div>
         <!-- /// -->
+  </form>
+  <!-- Products -->
+  <div class="col-sm-9 products">
+    <div class="row">
 
-        <!-- Products -->
-        <div class="col-sm-9 products">
-          <div class="row">
-
-            {{!-- {{#each books}}
+      {{!-- {{#each books}}
             <div class="col-sm-6 col-md-4 product">
               <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
               <a href="./"><img src="{{picture}}" alt="{{title}}"/></a>
@@ -544,26 +544,26 @@
             </div>
         {{/each}} --}}
 
-            {{#each laptops}}
-            <div class="col-sm-6 col-md-4 product">
-              <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-              <img src="{{image}}" alt="{{name}}" style="width:250px; height:200px;" />
+      {{#each laptops}}
+      <div class="col-sm-6 col-md-4 product">
+        <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+        <img src="{{image}}" alt="{{name}}" style="width:250px; height:200px;" />
 
-              <div class="content">
-                <h1 class="h4" style="font-size: 11px;">{{name}}</h1>
-                <p class="price">{{price}}</p>
+        <div class="content">
+          <h1 class="h4" style="font-size: 11px;">{{name}}</h1>
+          <p class="price">{{price}}</p>
 
-                <form action="/product" method="GET">
-                  <button id="id" type="submit" name="product" value={{_id}} class="btn btn-link">Detail</button>
-                  <!--<a href="" method ="GET" class="btn btn-link"> Details</a>-->
-                </form>
+          <form action="/product" method="GET">
+            <button id="id" type="submit" name="product" value={{_id}} class="btn btn-link">Detail</button>
+            <!--<a href="" method ="GET" class="btn btn-link"> Details</a>-->
+          </form>
 
-                <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
-              </div>
-            </div>
-            {{/each}}
+          <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+        </div>
+      </div>
+      {{/each}}
 
-            <!--div class="col-sm-6 col-md-4 product">
+      <!--div class="col-sm-6 col-md-4 product">
               <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
               <a href="./"><img src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 14"/></a>
 
@@ -679,41 +679,39 @@
               </div>
             </div>-->
 
-          </div>
-
-          <nav>
-            <ul class="pagination">
-              {{#if first}}
-              <li><a href="/catalog/?page=1">First</a></li>
-              {{/if}}
-              {{#if prev}}
-              <li>
-                <a href="/catalog/?page={{prevPage}}" aria-label="Previous">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
-                </a>
-              </li>
-              <li><a href="/catalog/?page={{prevPage}}">{{prevPage}}</a></li>
-              {{/if}}
-              <li><a class="active" href="/catalog/?page=1">{{page}}</a></li>
-              {{#if next}}
-              <li><a href="/catalog/?page={{nextPage}}">{{nextPage}}</a></li>
-              <li>
-                <a href="/catalog/?page={{nextPage}}" aria-label="Next">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
-                </a>
-              </li>
-              {{/if}}
-              {{#if last}}
-              <li><a href="/catalog/?page={{pages}}">Last</a></li>
-              {{/if}}
-            </ul>
-          </nav>
-        </div>
-        <!-- /// -->
-      </div>
     </div>
-</form>
 
+    <nav>
+      <ul class="pagination">
+        {{#if first}}
+        <li><a href="/catalog/?page=1">First</a></li>
+        {{/if}}
+        {{#if prev}}
+        <li>
+          <a href="/catalog/?page={{prevPage}}" aria-label="Previous">
+            <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+          </a>
+        </li>
+        <li><a href="/catalog/?page={{prevPage}}">{{prevPage}}</a></li>
+        {{/if}}
+        <li><a class="active" href="/catalog/?page=1">{{page}}</a></li>
+        {{#if next}}
+        <li><a href="/catalog/?page={{nextPage}}">{{nextPage}}</a></li>
+        <li>
+          <a href="/catalog/?page={{nextPage}}" aria-label="Next">
+            <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
+          </a>
+        </li>
+        {{/if}}
+        {{#if last}}
+        <li><a href="/catalog/?page={{pages}}">Last</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+  </div>
+  <!-- /// -->
+  </div>
+  </div>
 
   <br><br>
 
