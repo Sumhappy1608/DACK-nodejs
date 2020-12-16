@@ -26,7 +26,7 @@ exports.checkCredential = async(username, password) => {
     const pass = await userCollection.find({"user.username" : username}, {"user.password": 1, _id: 0}).toArray();
     //const verifyHash = passwordHash.verify(password, pass);
 
-    if(!pass)
+    if(pass)
     {
         return account;
     }
