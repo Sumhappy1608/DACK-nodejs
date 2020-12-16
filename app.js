@@ -54,6 +54,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//app.use(function(req:Request<ParamsDictionary))
+
 module.exports = app;
 
 

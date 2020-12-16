@@ -8,8 +8,8 @@ router.get('/', loginForm);
 
 router.post('/login-action',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
+                                   failureRedirect: '/login?error=wrong-password',
+                                   failureFlash: false })
 );
 
 /*router.post('/login-action', (req, res) => {

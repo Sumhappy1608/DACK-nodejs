@@ -5,24 +5,12 @@ const userService = require('../models/userModel');
 passport.use(new LocalStrategy(
   async function (username, password, done) {
     const user = await userService.checkCredential(username, password);
+    console.log(user);
     if (!user) {
       return done(null, false, { message: 'Incorrect username or password!' });
     }
     return done(null,user);
   }
-
-  /*User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }*/
-
 ));
 
 //Thông tin nào được lưu trong session
