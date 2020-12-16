@@ -2,6 +2,7 @@ const {db} = require('../database/db');
 const { ObjectId} = require('mongodb');
 const passport = require('passport');
 var passwordHash = require('password-hash');
+const { Passport } = require('passport');
 
 
 exports.registration = async(user) => {
@@ -18,6 +19,8 @@ exports.registration = async(user) => {
 exports.checkCredential = async(username, password) => {
     const userCollection = db().collection("user");
     const account = await userCollection.findOne({"user.username" : username});
+    console.log(account.user.password);
+    console.log(passwordHash.verify(password, account.user.password));
     if(!account)   //Nếu không có user
     {
         return false;
