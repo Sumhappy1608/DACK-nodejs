@@ -19,17 +19,12 @@ exports.registration = async(user) => {
 exports.checkCredential = async(username, password) => {
     const userCollection = db().collection("user");
     const account = await userCollection.findOne({"user.username" : username});
-    console.log(account.user.password);
-    console.log(passwordHash.verify(password, account.user.password));
+    
     if(!account)   //Nếu không có user
     {
         return false;
     }
-
-    //const pass = await userCollection.find({"user.username" : username}, {"user.password": 1, _id: 0}).toArray();
     const verifyHash = passwordHash.verify(password, account.user.password);
-
-    console.log(account.user.password);
 
     if(verifyHash)
     {
@@ -39,8 +34,8 @@ exports.checkCredential = async(username, password) => {
     return false;
 }
 
-exports.getUser = (id) =>{
+exports.getUser = async (id) => {
     const userCollection = db().collection("user");
-    const user = userCollection.findOne({_id:id});
+    const user = await userCollection.findOne({"_id":ObjectId(id)});
     return user;
 }
