@@ -7,6 +7,10 @@ function checkUsernameExist(username){
             $('#username-info').addClass('error').removeClass('success').html('User name has already been taken');
             isUsernameCheck = false;
         }
+        else if (username === ''){
+            $('#username-info').addClass('error').removeClass('success').html('Please fill this one');
+            isUsernameCheck = false;
+        }
         else{
             $('#username-info').addClass('success').removeClass('error').html('You can take this username');
             isUsernameCheck = true;
@@ -19,10 +23,10 @@ function checkConfirmPassword(con_password){
     console.log(password);
     if(con_password === password)
     {
-        isConfirmPasswordCheck = true;
+        $('#password-confirm').removeClass('error').html('');
     }
     else{
-        isConfirmPasswordCheck = false;
+        $('#password-confirm').addClass('error').html('Please check your password again');
     }
 }
 
