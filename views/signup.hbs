@@ -82,7 +82,8 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-12">
-                  <input type="text" name="name" value="" placeholder="First Name" required="" class="form-control" /><br>
+                  <input type="text" name="name" value="" placeholder="First Name" required="" class="form-control" onchange="checkUsernameExist(this.value)" /><br>
+                  <span id="username-info"></span>
                 </div>
                 <div class="col-sm-12">
                   <input type="text" name="phone" value="" placeholder="Phone" required="" class="form-control" /><br>
@@ -91,16 +92,16 @@
                   <input type="email" name="email" value="" placeholder="E-mail" required="" class="form-control" /><br>
                 </div>
                 <div class="col-sm-12">
-                  <input type="password" name="password" value="" placeholder="Password" required="" class="form-control" /><br>
+                  <input id="password" type="password" name="password" value="" placeholder="Password" required="" class="form-control" /><br>
                 </div>
                 <div class="col-sm-12">
-                  <input type="password" name="password-confirm" value="" placeholder="Confirm Password" required="" class="form-control" /><br>
+                  <input type="password" name="password-confirm" value="" placeholder="Confirm Password" required="" class="form-control" onchange="checkConfirmPassword(this.value)"/><br>
                 </div>
               </div>
             </div>
             <br>
 
-            <button type="submit" class="btn btn-primary">Join free</button>
+            <button type="submit" class="btn btn-primary" onclick="return checkValid()">Join free</button>
             <a href="#" class="xs-margin">Terms ></a>
 
             <br><br>
@@ -356,7 +357,7 @@
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/core.js"></script>
     <script src="../assets/js/catalog.js"></script>
-
+    <script src="../assets/js/main.js"></script>
     <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.js"></script>
     <script type="text/javascript" src="../assets/js/jquery.ui.touch-punch.js"></script>
 

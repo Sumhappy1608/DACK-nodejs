@@ -11,6 +11,7 @@ var signupRouter = require('./routers/signup');
 var catalogRouter = require('./routers/catalog');
 var productRouter = require('./routers/product');
 var passport = require('./passport/index');
+const userApiRouter = require('./routers/api/users');
 
 require('./database/db');
 
@@ -37,6 +38,7 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
+app.use('/api/users', userApiRouter);
 
 
 app.use(function(req,res,next){

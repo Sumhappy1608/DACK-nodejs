@@ -39,3 +39,15 @@ exports.getUser = async (id) => {
     const user = await userCollection.findOne({"_id":ObjectId(id)});
     return user;
 }
+
+exports.isUsernameExist = async (username) => {
+    const userCollection = db().collection("user");
+    const account = await userCollection.findOne({"user.username" : username});
+    
+    if(!account)   //Nếu không có user
+    {
+        return false;
+    }
+
+    return true;
+}
