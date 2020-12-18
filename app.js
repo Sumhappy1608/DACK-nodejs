@@ -33,6 +33,11 @@ app.use(session({ secret: 'secret-cat'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req,res,next){
+  res.locals.user = req.user;
+  next()
+});
+
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
@@ -40,11 +45,6 @@ app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
 app.use('/api/users', userApiRouter);
 
-
-app.use(function(req,res,next){
-  res.locals.user = req.user;
-  next()
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

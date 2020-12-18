@@ -21,7 +21,7 @@ passport.serializeUser(function(user, done) {
 //Muốn đọc thông tin từ session xuống để biết được user đó là ai
 passport.deserializeUser(function(id, done) {
   userService.getUser(id).then((user) => {
-    console.log(user);
+    //console.log(user);
     done(null,user);
   });
 });

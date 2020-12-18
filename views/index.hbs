@@ -67,7 +67,7 @@
             <ul class="nav navbar-nav navbar-right">
               {{#if user}}
               <!--User đang đăng nhập-->
-                <li><a href="#"> <i class="ion-android-person"></i> {{user._id}} </a></li>
+                <li><a href="#"> <i class="ion-android-person"></i> {{user.user.username}} </a></li>
                 <li><a href="#"> Log out</a></li>
                 <li><a href="/signup"> Sign Up</a></li>
               {{else}}
