@@ -1,4 +1,5 @@
 const express = require('express');
+const { route } = require('.');
 const router = express.Router();
 const login = require('../controllers/loginController');
 const loginForm = login.sendform;
@@ -12,11 +13,10 @@ router.post('/login-action',
                                    failureFlash: false })
 );
 
-/*router.post('/login-action', (req, res) => {
-    console.log("Đã nhấn nút sign in");
-    //res.redirect('/');
-    res.redirect('/login');
-});*/
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 /*router.get('/signup', (req, res) => {
     res.redirect('/signup');
