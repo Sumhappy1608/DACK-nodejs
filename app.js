@@ -13,10 +13,10 @@ var productRouter = require('./routers/product');
 var passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
 
+
 require('./database/db');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

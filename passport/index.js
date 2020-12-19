@@ -1,17 +1,20 @@
 const passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 const userService = require('../models/userModel');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-passport.use(new LocalStrategy(
-  async function (username, password, done) {
-    const user = await userService.checkCredential(username, password);
-    //console.log(user);
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username or password!' });
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: '',
+      clientSecret: '',
+      callbackURL: '/auth/google/callback'
+    },
+    accessToken => {
+      console.log(accessToken);
     }
-    return done(null,user);
-  }
-));
+  )
+);
 
 //Thông tin nào được lưu trong session
 passport.serializeUser(function(user, done) {
@@ -25,5 +28,6 @@ passport.deserializeUser(function(id, done) {
     done(null,user);
   });
 });
+
 
 module.exports = passport;
