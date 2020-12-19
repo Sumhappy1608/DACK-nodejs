@@ -38,6 +38,22 @@ app.use(function(req,res,next){
   next()
 });
 
+app.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
+);
+
+//router.get('/google/callback', passport.authenticate('google'));
+app.get('/google/callback', 
+passport.authenticate('google', { failureRedirect: '/login' }),
+function(req, res) {
+  // Successful authentication, redirect home.
+  //res.redirect('/');
+  console.log("thành công!!!");
+});
+
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
