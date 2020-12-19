@@ -16,7 +16,8 @@ passport.use(new LocalStrategy(
 
 //Thông tin nào được lưu trong session
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+   done(null, user._id);
+   //done(null,user.id);
 });
 
 //Muốn đọc thông tin từ session xuống để biết được user đó là ai
