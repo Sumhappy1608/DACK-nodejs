@@ -39,3 +39,7 @@ function checkValid(){
     }
     return false;
 }
+
+function ChangeImage(image_link){
+    
+}
