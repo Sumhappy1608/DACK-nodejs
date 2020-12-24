@@ -1,0 +1,12 @@
+const userModel = require('../models/userModel');
+var passwordHash = require('password-hash');
+
+exports.updateEmailPhoneAndImage = (req, res, next) => {
+    req.user.user.email = req.body.email;
+    req.user.user.phone = req.body.phone;
+    req.user.user.image = req.body.image;
+    let temp = req.user;
+    console.log(temp);
+    userModel.updateEmailPhoneAndImage(temp);
+    res.redirect('/user');
+}
