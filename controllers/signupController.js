@@ -15,7 +15,8 @@ exports.registration = (req, res, next) => {
         username: username,
         phone: phone,
         email: email,
-        password: password_hashed
+        password: password_hashed,
+        image: ""
     }
     userModel.registration(user);
     res.redirect('/login');

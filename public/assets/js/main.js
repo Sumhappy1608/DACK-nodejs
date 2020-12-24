@@ -24,9 +24,11 @@ function checkConfirmPassword(con_password){
     if(con_password === password)
     {
         $('#password-confirm').removeClass('error').html('');
+        isConfirmPasswordCheck = true;
     }
     else{
         $('#password-confirm').addClass('error').html('Please check your password again');
+        isConfirmPasswordCheck = false;
     }
 }
 
