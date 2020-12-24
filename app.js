@@ -10,6 +10,7 @@ var loginRouter = require('./routers/login');
 var signupRouter = require('./routers/signup');
 var catalogRouter = require('./routers/catalog');
 var productRouter = require('./routers/product');
+var userRouter = require('./routers/user/user');
 var passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
 
@@ -60,7 +61,7 @@ app.use('/signup', signupRouter);
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
 app.use('/api/users', userApiRouter);
-
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
