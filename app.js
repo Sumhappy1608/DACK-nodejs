@@ -13,6 +13,7 @@ var productRouter = require('./routers/product');
 var userRouter = require('./routers/user/user');
 var passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
+var repasswordRouter = require('./routers/repassword');
 
 
 require('./database/db');
@@ -62,7 +63,7 @@ app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
 app.use('/api/users', userApiRouter);
 app.use('/user', userRouter);
-
+app.use('/re-password', repasswordRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
