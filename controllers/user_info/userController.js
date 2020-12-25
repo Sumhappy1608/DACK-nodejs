@@ -1,5 +1,4 @@
 const userModel = require('../../models/userModel');
-var passwordHash = require('password-hash');
 
 exports.updateEmailPhoneAndImage = (req, res, next) => {
     req.user.user.email = req.body.email;

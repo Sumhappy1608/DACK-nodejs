@@ -5,4 +5,6 @@ const repasswordForm = repassword.sendform;
 
 router.get('/', repasswordForm);
 
+router.post('/change-pass', repassword.changePassword);
+
 module.exports = router;

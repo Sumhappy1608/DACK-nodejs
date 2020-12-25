@@ -32,6 +32,10 @@ function checkConfirmPassword(con_password){
     }
 }
 
+function makeBoolFalse(){
+    isConfirmPasswordCheck = false;
+}
+
 function checkValid(){
     if(isUsernameCheck && isConfirmPasswordCheck)
     {

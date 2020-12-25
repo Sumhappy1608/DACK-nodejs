@@ -57,3 +57,15 @@ exports.updateEmailPhoneAndImage = async (user) => {
     await userCollection.updateOne({_id: user._id}, {$set: {user: user.user}});
     return 1;
 }
+
+exports.changePassword = async (old_pass, new_pass, old_pass_check) => {
+    if(passwordHash.verify(old_pass, old_pass_check.user.password))
+    {
+        let password = passwordHash.generate(new_pass);
+        old_pass_check.user.password = password;
+        const userCollection = db().collection("user");
+        await userCollection.updateOne({_id: old_pass_check._id}, {$set: {user: old_pass_check.user}});
+        return true;
+    }
+    return false;
+}
