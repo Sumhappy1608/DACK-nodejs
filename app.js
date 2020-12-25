@@ -13,7 +13,7 @@ var productRouter = require('./routers/product');
 var userRouter = require('./routers/user/user');
 var passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
-var repasswordRouter = require('./routers/repassword');
+var repasswordRouter = require('./routers/user/repassword');
 
 
 require('./database/db');

@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel');
+const userModel = require('../../models/userModel');
 var passwordHash = require('password-hash');
 
 exports.updateEmailPhoneAndImage = (req, res, next) => {
