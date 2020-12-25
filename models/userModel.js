@@ -53,7 +53,6 @@ exports.isUsernameExist = async (username) => {
 }
 
 exports.updateEmailPhoneAndImage = async (user) => {
-    console.log(user);
     const userCollection = db().collection("user");
     await userCollection.updateOne({_id: user._id}, {$set: {user: user.user}});
     return 1;

@@ -86,7 +86,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="{{user.user.image}}" class="rounded-circle">
+                    <img id="image-info" src="{{user.user.image}}" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -178,7 +178,7 @@
                         <div class="col-md-12">
                         <div class="form-group focused">
                             <label class="form-control-label" for="input-address">Your iamge link</label>
-                            <input id="input-address" name="image" class="form-control form-control-alternative" placeholder="Your image link" value="{{user.user.image}}" type="text" onchange="ChangeImange(this.value)">
+                            <input id="input-address" name="image" class="form-control form-control-alternative" placeholder="Your image link" value="{{user.user.image}}" type="text" onchange="ChangeImage(this.value)">
                         </div>
                         </div>
                     </div>
@@ -216,6 +216,6 @@
     </div>
   </footer>
 
-  <script src="../../assets/js/main.js"></script>
+  <script src="/../assets/js/main.js"></script>
 </body>
 
