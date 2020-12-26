@@ -1,8 +1,18 @@
 const {db} = require('../database/db');
 const { ObjectId} = require('mongodb');
 const passport = require('passport');
-var passwordHash = require('password-hash');
+const passwordHash = require('password-hash');
 const { Passport } = require('passport');
+var generator = require('generate-password');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'kryptograph0000@gmail.com',
+      pass: 'genshinimpact'
+    }
+  });
 
 
 exports.registration = async(user) => {
@@ -68,4 +78,28 @@ exports.changePassword = async (old_pass, new_pass, old_pass_check) => {
         return true;
     }
     return false;
+}
+
+exports.recoverPassword = async (username) => {
+    let newPass = generator.generate({
+        length: 10,
+        numbers: true
+    });
+
+    const userCollection = db().collection("user");
+    await userCollection.updateOne({"user.username": username}, {$set: {"user.password": passwordHash.generate(newPass)}});
+
+    let mailOption = {
+        from: 'kryptograph0000@gmail.com',
+        to: 'rimuru132@gmail.com',
+        subject: 'Recover password',
+        text: 'Your new password for ' + username + ' is ' + newPass
+    }
+    transporter.sendMail(mailOption, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 }

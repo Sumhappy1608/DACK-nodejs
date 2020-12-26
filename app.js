@@ -1,24 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
 
-var indexRouter = require('./routers/index');
-var loginRouter = require('./routers/login');
-var signupRouter = require('./routers/signup');
-var catalogRouter = require('./routers/catalog');
-var productRouter = require('./routers/product');
-var userRouter = require('./routers/user/user');
-var passport = require('./passport/index');
+const indexRouter = require('./routers/index');
+const loginRouter = require('./routers/login');
+const signupRouter = require('./routers/signup');
+const catalogRouter = require('./routers/catalog');
+const productRouter = require('./routers/product');
+const userRouter = require('./routers/user/user');
+const passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
-var repasswordRouter = require('./routers/user/repassword');
+const repasswordRouter = require('./routers/user/repassword');
+const forgot_passwordRouter = require('./routers/user/forgot_password');
 
 
 require('./database/db');
 
-var app = express();
+const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -64,6 +65,7 @@ app.use('/product', productRouter);
 app.use('/api/users', userApiRouter);
 app.use('/user', userRouter);
 app.use('/re-password', repasswordRouter);
+app.use('/forgot_password', forgot_passwordRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

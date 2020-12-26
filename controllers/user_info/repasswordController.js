@@ -7,8 +7,6 @@ exports.sendform = (req, res, next) => {
 
 
 exports.changePassword = (req, res, next) => {
-    console.log(req.body.old_password);
-    console.log(req.body.password);
     if(userModel.changePassword(req.body.old_password, req.body.password, req.user)){
         res.redirect('/user?change-success');
     }
