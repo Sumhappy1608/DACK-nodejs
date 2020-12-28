@@ -9,5 +9,6 @@ exports.index = async (req, res, next) => {
 }
 
 exports.comment = async (req, res, next) => {
-    
+    await commentModel.addComment(req.query.product, req.body.comment, req.user.user.username);
+    res.redirect('/product?product=' + req.query.product);
 }

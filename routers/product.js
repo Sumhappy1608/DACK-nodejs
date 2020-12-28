@@ -9,11 +9,6 @@ router.get('/back', (req, res) => {
     res.redirect('/');
 });
 
-router.post('/comment', (req, res) => {
-    var d = new Date();
-    let month = d.getMonth() + 1;
-    console.log(d.getFullYear() + '/' + (+d.getMonth() + 1) + '/' + d.getDate());
-    res.redirect('/product?product=' + req.query.product);
-});
+router.post('/comment', productController.comment);
 
 module.exports = router;
