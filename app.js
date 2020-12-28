@@ -41,6 +41,7 @@ app.use(function(req,res,next){
   next()
 });
 
+
 app.get(
   '/google',
   passport.authenticate('google', {
@@ -56,6 +57,8 @@ function(req, res) {
   console.log("đăng nhập google thành công ");
   res.redirect('/');
 });
+
+
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);

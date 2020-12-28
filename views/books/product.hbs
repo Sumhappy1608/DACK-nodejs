@@ -515,17 +515,27 @@
 
             {{#if user}}
             <!--User đang đăng nhập-->
+            <div>
+               <div class="pagination" style=" margin-bottom: 5%; margin-left:-31.5%; margin-top:10%;">
+                <a href="#">&raquo;</a>
+                <a href="#">&laquo;</a>
+            </div>
+            </div>
             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i
                 class="ion-chatbox-working"></i> Add comment </button>
             {{else}}
             <!--User chưa đăng nhập-->
-            <p>Bạn cần đăng nhập để bình luận</p>
+            <div>
+              <div class="pagination" style=" margin-bottom: 5%; margin-left:-31.5%; margin-top:10%;">
+                <a href="#">&raquo;</a>
+                <a href="#">&laquo;</a>
+              </div>
+              <p>Bạn cần đăng nhập để bình luận</p>
+            </div>
+            
             <button class="btn btn-default btn-sm"><a href='/login'>Login</a> </button>
             {{/if}}
-            <div class="pagination">
-              <a href="#">&raquo;</a>
-              <a href="#">&laquo;</a>
-            </div>
+            
           </div>
           <br><br>
 
