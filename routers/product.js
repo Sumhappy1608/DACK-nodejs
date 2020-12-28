@@ -10,7 +10,9 @@ router.get('/back', (req, res) => {
 });
 
 router.post('/comment', (req, res) => {
-    console.log(req.body.comment);
+    var d = new Date();
+    let month = d.getMonth() + 1;
+    console.log(d.getFullYear() + '/' + (+d.getMonth() + 1) + '/' + d.getDate());
     res.redirect('/product?product=' + req.query.product);
 });
 
