@@ -7,7 +7,6 @@ exports.AddToCardCatalog = async (req, res, next) => {
     const laptops = await laptopModel.list();
     cartItem.push(laptop);
     const cart = req.session.cart = cartItem;
-    console.log(req.session.user);
     res.redirect("/catalog");
 }
 
