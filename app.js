@@ -16,6 +16,7 @@ const userApiRouter = require('./routers/api/users');
 const commentRouter = require('./routers/api/comments');
 const repasswordRouter = require('./routers/user/repassword');
 const forgot_passwordRouter = require('./routers/user/forgot_password');
+const cartRouter = require('./routers/cart');
 
 
 require('./database/db');
@@ -39,6 +40,7 @@ app.use(passport.session());
 
 app.use(function(req,res,next){
   res.locals.user = req.user;
+  res.locals.cart = req.session.cart;
   next()
 });
 
@@ -59,18 +61,19 @@ function(req, res) {
   res.redirect('/');
 });
 
-
-
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
+app.use('/cart', cartRouter);
+
 app.use('/api/users', userApiRouter);
 app.use('/api/comment', commentRouter);
 app.use('/user', userRouter);
 app.use('/re-password', repasswordRouter);
 app.use('/forgot_password', forgot_passwordRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

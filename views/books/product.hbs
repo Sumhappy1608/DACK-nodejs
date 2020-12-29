@@ -75,7 +75,37 @@
 
       <div class="content">
 
+      {{#each cart}}
         <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="{{image}}" alt="{{name}}" />
+            </a>
+          </div>
+          <div class="media-body">
+            <h2 class="h4 media-heading">{{name}}</h2>
+            <label>{{type}}</label>
+            <p class="price">VND {{price}}</p>
+          </div>
+          <div class="controls">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-sm" type="button" data-action="minus"><i
+                    class="ion-minus-round"></i></button>
+              </span>
+              <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-sm" type="button" data-action="plus"><i
+                    class="ion-plus-round"></i></button>
+              </span>
+            </div><!-- /input-group -->
+
+            <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
+          </div>
+        </div>
+        {{/each}}
+
+        {{!-- <div class="media">
           <div class="media-left">
             <a href="#">
               <img class="media-object" src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 11" />
@@ -241,7 +271,7 @@
 
             <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
           </div>
-        </div>
+        </div> --}}
 
       </div>
 
@@ -390,7 +420,11 @@
           {{!-- <p class="price through">$249.99</p> --}}
           <br><br>
 
-          <button class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
+          <form action="/cart/product" method="GET">
+            <button  id="id" name="product" value={{laptop._id}} class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
+          </form>
+
+          {{!-- <button class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button> --}}
         </div>
       </div>
       <br><br><br>
