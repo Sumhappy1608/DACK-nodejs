@@ -479,13 +479,12 @@
 
 
             <div class="wrapper">
-              <div class="content">
+              <div class="content" id="user_comment">
 
                 {{#each comment}}
-                <h3>{{username}}</h3>
-                <label>{{date}}</label>
-                <p>
-                  {{text}}</p>
+                  <h3>{{username}}</h3>
+                  <label>{{date}}</label>
+                  <p>{{text}}</p>
                 {{/each}}
                 {{!-- <h3>Anne Hathaway</h3>
                 <label>2 years ago</label>
@@ -512,24 +511,22 @@
               </div>
             </div>
             <br>
-
+            <input id="all-page" value="{{pages}}" type="hidden">
+            <input id="product-id" value="{{laptop._id}}" type="hidden">
+            <div class="pagination" style=" margin-bottom: 5%; margin-left:13%; margin-top:10%;">
+                <button id="prev" onclick="checkPrev()">&laquo;</button>
+                <button id="next" onclick="checkNext()">&raquo;</button>
+              </div>
             {{#if user}}
             <!--User đang đăng nhập-->
-            <div>
-               <div class="pagination" style=" margin-bottom: 5%; margin-left:-31.5%; margin-top:10%;">
-                <a href="#">&raquo;</a>
-                <a href="#">&laquo;</a>
-            </div>
+            
             </div>
             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i
                 class="ion-chatbox-working"></i> Add comment </button>
             {{else}}
             <!--User chưa đăng nhập-->
             <div>
-              <div class="pagination" style=" margin-bottom: 5%; margin-left:-31.5%; margin-top:10%;">
-                <a href="#">&raquo;</a>
-                <a href="#">&laquo;</a>
-              </div>
+              
               <p>Bạn cần đăng nhập để bình luận</p>
             </div>
             
@@ -953,7 +950,8 @@
   <script src="../assets/js/core.js"></script>
   <script src="../assets/js/catalog.js"></script>
   <script src="../assets/js/carousel.js"></script>
-
+  <script src="/../assets/js/commentProduct.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </body>
 
 </html>

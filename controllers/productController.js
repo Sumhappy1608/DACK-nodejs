@@ -4,8 +4,8 @@ const commentModel = require('../models/commentModel');
 exports.index = async (req, res, next) => {
     let id = req.query.product;
     let laptop = await laptopModel.get(id);
-    let comments = await commentModel.listComment(laptop._id);
-    res.render('books/product', {laptop: laptop, comment: comments});
+    let comments = await commentModel.listComment(laptop._id, 1);
+    res.render('books/product', {laptop: laptop, comment: comments.comments, pages: comments.totalPages});
 }
 
 exports.comment = async (req, res, next) => {

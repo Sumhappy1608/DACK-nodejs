@@ -13,6 +13,7 @@ const productRouter = require('./routers/product');
 const userRouter = require('./routers/user/user');
 const passport = require('./passport/index');
 const userApiRouter = require('./routers/api/users');
+const commentRouter = require('./routers/api/comments');
 const repasswordRouter = require('./routers/user/repassword');
 const forgot_passwordRouter = require('./routers/user/forgot_password');
 
@@ -66,6 +67,7 @@ app.use('/signup', signupRouter);
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
 app.use('/api/users', userApiRouter);
+app.use('/api/comment', commentRouter);
 app.use('/user', userRouter);
 app.use('/re-password', repasswordRouter);
 app.use('/forgot_password', forgot_passwordRouter);
