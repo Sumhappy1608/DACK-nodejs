@@ -88,10 +88,12 @@ exports.recoverPassword = async (username) => {
 
     const userCollection = db().collection("user");
     await userCollection.updateOne({"user.username": username}, {$set: {"user.password": passwordHash.generate(newPass)}});
+    let user = await userCollection.findOne({"user.username" : username});
+
 
     let mailOption = {
         from: 'kryptograph0000@gmail.com',
-        to: 'rimuru132@gmail.com',
+        to: user.user.email,
         subject: 'Recover password',
         text: 'Your new password for ' + username + ' is ' + newPass
     }

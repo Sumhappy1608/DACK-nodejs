@@ -7,4 +7,5 @@ exports.sendform = (req, res, next) => {
 exports.changePassAndSendEmail = (req, res, next) => {
     let username = req.body.input_username;
     userModel.recoverPassword(username);
+    res.redirect('/login');
 }

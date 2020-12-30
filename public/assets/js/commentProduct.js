@@ -2,10 +2,11 @@ let fisrtPage = 1;
 let curPage = 1;
 let lastPage = document.getElementById('all-page').value;
 let id = document.getElementById('product-id').value;
+var prev = document.getElementById('prev');
+var next = document.getElementById('next');
 
 function checkView(){
-    var prev = document.getElementById('prev');
-    var next = document.getElementById('next');
+    
     if(curPage <= fisrtPage)
     {
         prev.style.visibility = "hidden";
