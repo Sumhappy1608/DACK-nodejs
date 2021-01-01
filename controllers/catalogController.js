@@ -21,7 +21,7 @@ exports.searchbyName = async (req, res, next) => {
     //console.log(req.user);
     if(req.user != undefined)
     { 
-        console.log(req.session.cart);
+        //console.log(req.session.cart);
         if(req.session.cart.length != 0)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
             await cartModel.addProduct_user(req.session.cart,req.user);
@@ -56,5 +56,4 @@ exports.searchbyName = async (req, res, next) => {
             laptop_type: type,
             laptop_brand: brand});
     }
-    
 }
