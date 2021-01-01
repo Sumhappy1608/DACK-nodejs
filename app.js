@@ -34,7 +34,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //passport middlewares
 //app.use(session({ secret: process.env.SESSION_SECRET}));
-app.use(session({ secret: 'secret-cat'}));
+//app.use(session({ secret: 'secret-cat'}));
+app.use(session({
+  secret: 'secret-cat',
+  resave: true,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
