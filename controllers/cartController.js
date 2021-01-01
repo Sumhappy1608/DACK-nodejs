@@ -8,13 +8,10 @@ exports.AddToCardCatalog = async (req, res, next) => {
     let laptop = await laptopModel.get(id);
     cartItem.push(laptop);
     const cart = req.session.cart = cartItem;  //bỏ hàng hóa vào trong session
-    // console.log(cart);
-    // console.log(cart.length);
-    //res.redirect("/catalog");
+
     if(req.user != undefined) {
         if(cart.length != 0)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
-            console.log("có session cart");
             await cartModel.addProduct_Session(cart,req.user._id);
         }
         await cartModel.addProduct(laptop,req.user._id);

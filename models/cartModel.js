@@ -48,6 +48,7 @@ exports.addProduct = async(product, id_user) => {
     }
 }
 
+//nếu trong session có hàng hóa thì sau khi đăng nhập thêm vào giỏ hàng
 exports.addProduct_Session = async(cart, id_user) => {
     const cartCollection = db().collection("cart");
     cartCollection.updateOne(
@@ -60,8 +61,21 @@ exports.addProduct_Session = async(cart, id_user) => {
     );
 }
 
+exports.addProduct_user = async(cart, user) => {
+    const cartCollection = db().collection("cart");
+    cartCollection.updateOne(
+        { "id_user": ObjectID(user._id)},
+        {
+            $addToSet: {
+                "products": {$each : cart}
+            }
+        }
+    );
+}
+
 exports.selectProduct = async(user) => {
     const cartCollection = db().collection("cart");
-    const products_cart = cartCollection.findOne({"id_user": user._id});
+    const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id)});
+    //console.log(products_cart);
     return products_cart;
 }
