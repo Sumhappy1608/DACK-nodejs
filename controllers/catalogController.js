@@ -22,7 +22,7 @@ exports.searchbyName = async (req, res, next) => {
     if(req.user != undefined)
     { 
         //console.log(req.session.cart);
-        if(req.session.cart.length != 0)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
+        if(req.session.cart != undefined)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
             await cartModel.addProduct_user(req.session.cart,req.user);
         }

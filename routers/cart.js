@@ -7,4 +7,6 @@ router.get('/catalog', cartController.AddToCardCatalog);
 
 router.get('/product', cartController.AddToCardProduct);
 
+router.get('/changeQty',cartController.ChangeQuantity);
+
 module.exports = router;
