@@ -64,11 +64,13 @@
                 <button class="btn btn-default btn-sm" type="button" data-action="minus"><i
                     class="ion-minus-round"></i></button>
               </span>
-              <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
+              
+              <input type="text" class="form-control input-sm" placeholder="Qty" value="1" name="Qty" readonly="">
               {{!-- <form action="/changeQty" method="GET">
                 <input type="text" class="form-control input-sm" placeholder="Qty" value="1" name="Qty" readonly="">
                 <input hidden="" name="id_product" value="{{_id}}">
               </form> --}}
+
               <span class="input-group-btn">
                 <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
               </span>
@@ -121,8 +123,8 @@
           </div>
           <div class="col-xs-3 col-sm-4">
             <div class="total">
-              <p>$1 200</p>
-              <h3 class="h4">$1 200</h3>
+              <p>VND {{total}}</p>
+              <h3 class="h4">VND {{total}}</h3>
             </div>
           </div>
 

@@ -37,9 +37,9 @@ exports.AddToCardProduct = async (req, res, next) => {
     res.redirect('back');  //trả lại trang hiện có
 }
 
-exports.ChangeQuantity = async (req, res, next) => {
-    // console.log(req.body.id_product);
-    // console.log(req.body.Qty);
-}
+// exports.ChangeQuantity = async (req, res, next) => {
+//     console.log(req.query.id_product);
+//     console.log(req.query.Qty);
+// }
 
 

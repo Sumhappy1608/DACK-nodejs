@@ -26,6 +26,7 @@ exports.searchbyName = async (req, res, next) => {
         {
             await cartModel.addProduct_user(req.session.cart,req.user);
         }
+        await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
         res.render('books/catalog', {laptops: returnObject.laptops,
             first: returnObject.first,
@@ -39,7 +40,9 @@ exports.searchbyName = async (req, res, next) => {
             searchName: req.query.searchName,
             laptop_type: type,
             laptop_brand: brand,
-            products: products_cart.products});
+            products: products_cart.products,
+            total: products_cart.total
+        });
     }
     else
     {

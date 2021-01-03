@@ -10,12 +10,20 @@ exports.index = async (req, res, next) => {
     if(req.user != undefined)
     { 
         //console.log(req.session.cart);
-        if(req.session.cart.length != 0)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
+        if(req.session.cart != undefined)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
             await cartModel.addProduct_user(req.session.cart,req.user);
         }
+        await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
-        res.render('books/product', {laptop: laptop, comment: comments.comments, pages: comments.totalPages, products: products_cart.products});
+        res.render('books/product', 
+        { 
+            laptop: laptop, 
+            comment: comments.comments, 
+            pages: comments.totalPages, 
+            products: products_cart.products, 
+            total:products_cart.total
+        });
     }
     else
     {

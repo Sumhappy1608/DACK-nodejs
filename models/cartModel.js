@@ -79,3 +79,17 @@ exports.selectProduct = async(user) => {
     //console.log(products_cart);
     return products_cart;
 }
+
+exports.updateTotal = async(user) =>{
+    const cartCollection = db().collection("cart");
+    const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": "0"});
+    console.log(products_cart.products.length);
+    let sum = 0;
+    for (const product of products_cart.products) {  
+        sum += parseFloat(product.price);
+    }
+    sum = sum.toString();  //đổi số thành chuỗi
+    console.log(sum);
+
+    await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": "0"}, {$set: {"total":sum}});
+}
