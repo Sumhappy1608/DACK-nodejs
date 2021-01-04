@@ -93,3 +93,10 @@ exports.updateTotal = async(user) =>{
 
     await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": "0"}, {$set: {"total":sum}});
 }
+
+exports.deleteProduct = async(id_product,user) =>{
+    console.log(user._id);
+    console.log(id_product);
+    //"products": [{"_id":ObjectID(id_product)}]
+    await cartCollection.updateOne({"id_user": user._id}, {$pull:{"products":{$elemMatch:{"_id":ObjectID(id_product)}}}});
+}

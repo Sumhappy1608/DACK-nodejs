@@ -9,4 +9,5 @@ router.get('/product', cartController.AddToCardProduct);
 
 // router.get('/changeQty',cartController.ChangeQuantity);
 
+router.get('/remove',cartController.removeProduct);
 module.exports = router;
