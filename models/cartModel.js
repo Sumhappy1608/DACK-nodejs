@@ -1,5 +1,4 @@
 const {db} = require('../database/db');
-const { ObjectId} = require('mongodb');
 const { ObjectID} = require('mongodb');
 
 exports.addProduct = async(product, id_user) => {
@@ -22,7 +21,7 @@ exports.addProduct = async(product, id_user) => {
             type: product.type
         }],
         id_user: id_user,
-        isCheckout: "0",
+        isCheckout: false,
         total: "0"
     }
     // console.log(id_user);
@@ -83,10 +82,13 @@ exports.selectProduct = async(user) => {
 exports.updateTotal = async(user) =>{
     const cartCollection = db().collection("cart");
     const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": false});
-    console.log(products_cart.products.length);
+    //console.log(products_cart.products);
     let sum = 0;
-    for (const product of products_cart.products) {  
-        sum += parseFloat(product.price);
+    if(products_cart.products != null || products_cart.products != undefined)
+    {
+        for (const product of products_cart.products) {  
+            sum += parseFloat(product.price);
+        }
     }
     sum = sum.toString();  //đổi số thành chuỗi
     console.log(sum);

@@ -18,31 +18,53 @@ exports.searchbyName = async (req, res, next) => {
         type = '';
     }
     const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand);
+    
     //console.log(req.user);
-    if(req.user != undefined)
+    if(req.user != undefined )
     { 
-        //console.log(req.session.cart);
-        if(req.session.cart != undefined)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
+        if (req.session.cart != undefined)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
-            await cartModel.addProduct_user(req.session.cart,req.user);
+            await cartModel.addProduct_user(req.session.cart, req.user);
         }
-        await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
-        res.render('books/catalog', {laptops: returnObject.laptops,
-            first: returnObject.first,
-            prev: returnObject.prev,
-            prevPage: returnObject.prevPage,
-            page: returnObject.Page,
-            next: returnObject.next,
-            nextPage: returnObject.nextPage,
-            last: returnObject.last,
-            pages: returnObject.pages,
-            searchName: req.query.searchName,
-            laptop_type: type,
-            laptop_brand: brand,
-            products: products_cart.products,
-            total: products_cart.total
-        });
+       
+        if(products_cart != null || products_cart != undefined)
+        {
+            if(products_cart.products != null || products_cart.products != undefined)
+            {
+                await cartModel.updateTotal(req.user);
+                res.render('books/catalog', {laptops: returnObject.laptops,
+                    first: returnObject.first,
+                    prev: returnObject.prev,
+                    prevPage: returnObject.prevPage,
+                    page: returnObject.Page,
+                    next: returnObject.next,
+                    nextPage: returnObject.nextPage,
+                    last: returnObject.last,
+                    pages: returnObject.pages,
+                    searchName: req.query.searchName,
+                    laptop_type: type,
+                    laptop_brand: brand,
+                    products: products_cart.products,
+                    total: products_cart.total
+                });
+            }
+        }
+        else
+        {
+            res.render('books/catalog', {laptops: returnObject.laptops,
+                first: returnObject.first,
+                prev: returnObject.prev,
+                prevPage: returnObject.prevPage,
+                page: returnObject.Page,
+                next: returnObject.next,
+                nextPage: returnObject.nextPage,
+                last: returnObject.last,
+                pages: returnObject.pages,
+                searchName: req.query.searchName,
+                laptop_type: type,
+                laptop_brand: brand});
+        }
     }
     else
     {
