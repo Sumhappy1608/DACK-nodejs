@@ -46,5 +46,6 @@ exports.removeProduct = async (req, res, next) => {
     // console.log(id);
     // console.log(req.user);
     await cartModel.deleteProduct(id,req.user);
+    res.redirect('back');  //trả lại trang hiện có
 } 
 

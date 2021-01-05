@@ -100,7 +100,9 @@
               </span>
             </div><!-- /input-group -->
         
-            <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
+            <form action="/cart/remove" method="GET">
+                <button value="{{_id}}" name="id_product"> <i class="ion-trash-b"></i> Remove </button>
+            </form>
           </div>
         </div>
         {{/each}}

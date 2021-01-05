@@ -82,7 +82,7 @@ exports.selectProduct = async(user) => {
 
 exports.updateTotal = async(user) =>{
     const cartCollection = db().collection("cart");
-    const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": "0"});
+    const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": false});
     console.log(products_cart.products.length);
     let sum = 0;
     for (const product of products_cart.products) {  
@@ -91,12 +91,13 @@ exports.updateTotal = async(user) =>{
     sum = sum.toString();  //đổi số thành chuỗi
     console.log(sum);
 
-    await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": "0"}, {$set: {"total":sum}});
+    await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": false}, {$set: {"total":sum}});
 }
 
 exports.deleteProduct = async(id_product,user) =>{
-    console.log(user._id);
-    console.log(id_product);
-    //"products": [{"_id":ObjectID(id_product)}]
-    await cartCollection.updateOne({"id_user": user._id}, {$pull:{"products":{$elemMatch:{"_id":ObjectID(id_product)}}}});
+    const cartCollection = db().collection("cart");
+    await cartCollection.update(
+        { "id_user":ObjectID(user._id) },
+        { $pull: { products: { _id: id_product } } }
+      );
 }
