@@ -3,7 +3,7 @@ const { ObjectId} = require('mongodb');
 
 exports.list = async () => {
     const laptopsCollection = db().collection("laptops");
-    const laptops = await laptopsCollection.find({}).toArray();
+    const laptops = await laptopsCollection.find({delete_flag: false}).toArray();
     //console.log(books);
     //console.dir(laptops);
     return laptops;
@@ -35,27 +35,24 @@ exports.searchName = async(page, nameV, typeV, brandV) => {
     }
 
     if(nameV){
-        pages = Math.ceil(await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}}).count() / perPage);
-        laptops = await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}).count() / perPage);
+        laptops = await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
     else if (!nameV && (brandV || typeV))
     {
-        pages = Math.ceil(await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}}).count() / perPage);
-        laptops = await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}).count() / perPage);
+        laptops = await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
     else{
-        pages = Math.ceil(await laptopCollection.find({}).count() / perPage);
-        laptops = await laptopCollection.find({}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({delete_flag: false}).count() / perPage);
+        laptops = await laptopCollection.find({delete_flag: false}) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
-    
-    console.log(laptops);
-    console.log("here");
     
     const prev = Page > 1;
     const first = Page > 2;
