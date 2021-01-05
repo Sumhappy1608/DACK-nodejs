@@ -28,7 +28,7 @@ exports.registration = async(user) => {
 
 exports.checkCredential = async(username, password) => {
     const userCollection = db().collection("user");
-    const account = await userCollection.findOne({"user.username" : username});
+    const account = await userCollection.findOne({"user.username" : username, "isLock": false});
     
     if(!account)   //Nếu không có user
     {

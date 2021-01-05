@@ -11,10 +11,8 @@ exports.list = async () => {
 
 exports.get = async (id) => {
     const laptopCollection = db().collection('laptops');
-    
+    await laptopCollection.updateOne({_id: ObjectId(id)}, {$inc: {view: 1}});
     let laptop = await laptopCollection.findOne({_id: ObjectId(id)});
-    await laptopCollection.updateOne({_id: ObjectId(id)}, {$set: {view: laptop.view + 1}});
-    laptop = await laptopCollection.findOne({_id: ObjectId(id)});
     return laptop;
 }
 
