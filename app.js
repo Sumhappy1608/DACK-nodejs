@@ -46,6 +46,8 @@ app.use(passport.session());
 app.use(function(req,res,next){
   res.locals.user = req.user;
   res.locals.cart = req.session.cart;
+  res.locals.amount_cart =  req.session.amount;
+  res.locals.total_cart =  req.session.total;
   next()
 });
 

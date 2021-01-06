@@ -61,9 +61,15 @@
 
 <body>
   <div class="cart" data-toggle="inactive">
+    {{#if user}}
     <div class="label">
-      <i class="ion-bag"></i> 7
+      <i class="ion-bag"></i> {{amount}}
     </div>
+    {{else}} {{!--khi chưa có tài khoản --}}
+    <div class="label">
+      <i class="ion-bag"></i> {{amount_cart}}
+    </div>
+    {{/if}}
 
     <div class="overlay"></div>
 
@@ -131,7 +137,9 @@
               </span>
             </div><!-- /input-group -->
         
-            <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
+            <form action="/cart/remove" method="GET">
+                <button value="{{_id}}" name="id_product"> <i class="ion-trash-b"></i> Remove </button>
+            </form>
           </div>
         </div>
         {{/each}}

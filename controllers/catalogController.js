@@ -1,3 +1,4 @@
+const { ObjectID } = require('mongodb');
 const cartModel = require('../models/cartModel');
 const laptopModel = require('../models/laptopModel');
 const passport = require('../passport');
@@ -24,15 +25,40 @@ exports.searchbyName = async (req, res, next) => {
     { 
         if (req.session.cart != undefined)  //có hàng hóa trong session => trước khi đăng nhập đã có hàng hóa sẵn
         {
-            await cartModel.addProduct_user(req.session.cart, req.user);
+            //await cartModel.addProduct_user(req.session.cart, req.user);
+            for( const product of req.session.cart)
+            {
+                const temp = {
+                    _id: ObjectID(product._id),
+                    name: product.name,
+                    cpu: product.cpu,
+                    image: product.image,
+                    ram: product.ram,
+                    monitor: product.monitor,
+                    vga: product.vga,
+                    memory: product.memory,
+                    detail: product.detail,
+                    price: product.price,
+                    brand: product.brand,
+                    delete_flag: product.delete_flag,
+                    type: product.type,
+                    view: product.view
+                }
+                console.log(temp._id);
+                await cartModel.addProduct_user(temp,req.user);
+            }
         }
+        await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
-       
+        let amount_products = 0;
+        
         if(products_cart != null || products_cart != undefined)
         {
             if(products_cart.products != null || products_cart.products != undefined)
             {
-                await cartModel.updateTotal(req.user);
+                for (const product of products_cart.products) {
+                    amount_products = amount_products + 1;
+                }
                 res.render('books/catalog', {laptops: returnObject.laptops,
                     first: returnObject.first,
                     prev: returnObject.prev,
@@ -46,7 +72,8 @@ exports.searchbyName = async (req, res, next) => {
                     laptop_type: type,
                     laptop_brand: brand,
                     products: products_cart.products,
-                    total: products_cart.total
+                    total: products_cart.total,
+                    amount: amount_products
                 });
             }
         }
@@ -63,7 +90,9 @@ exports.searchbyName = async (req, res, next) => {
                 pages: returnObject.pages,
                 searchName: req.query.searchName,
                 laptop_type: type,
-                laptop_brand: brand});
+                laptop_brand: brand,
+                amount: amount_products
+            });
         }
     }
     else

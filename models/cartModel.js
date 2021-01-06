@@ -37,7 +37,7 @@ exports.addProduct = async(product, id_user) => {
     {
         console.log("đã có giỏ hàng");
         cartCollection.updateOne(
-            { "id_user":  ObjectID(id_user)},
+            { "id_user": ObjectID(id_user)},
             {
                 $addToSet: {
                     "products": product
@@ -60,16 +60,62 @@ exports.addProduct_Session = async(cart, id_user) => {
     );
 }
 
-exports.addProduct_user = async(cart, user) => {
+// exports.addProduct_user = async(cart, user) => {
+//     const cartCollection = db().collection("cart");
+//     cartCollection.updateOne(
+//         { "id_user": ObjectID(user._id)},
+//         {
+//             $addToSet: {
+//                 "products": {$each : cart}
+//             }
+//         }
+//     );
+// }
+
+exports.addProduct_user = async(product, user) => {
+
     const cartCollection = db().collection("cart");
-    cartCollection.updateOne(
-        { "id_user": ObjectID(user._id)},
-        {
-            $addToSet: {
-                "products": {$each : cart}
+    const cart = await cartCollection.findOne({"id_user": ObjectID(user._id)});
+    const cartNewRecord = {
+        products:[{
+            _id: product._id,
+            name: product.name,
+            cpu: product.cpu,
+            image: product.image,
+            ram: product.ram,
+            monitor: product.monitor,
+            vga: product.vga,
+            memory: product.memory,
+            detail: product.detail,
+            price: product.price,
+            brand: product.brand,
+            delete_flag: product.delete_flag,
+            type: product.type
+        }],
+        id_user: user._id,
+        isCheckout: false,
+        total: "0"
+    }
+    
+    if(!cart || cart.isCheckout == "1")
+    {
+        console.log("chưa có giỏ hàng");
+        cartCollection.insertOne(cartNewRecord, function (err,res) {
+            console.log('Them thanh cong');
+        });
+    }
+    else
+    {
+        console.log("đã có giỏ hàng");
+        cartCollection.updateOne(
+            { "id_user": ObjectID(user._id)},
+            {
+                $addToSet: {
+                    "products": product
+                }
             }
-        }
-    );
+        );
+    }
 }
 
 exports.selectProduct = async(user) => {
@@ -98,8 +144,9 @@ exports.updateTotal = async(user) =>{
 
 exports.deleteProduct = async(id_product,user) =>{
     const cartCollection = db().collection("cart");
-    await cartCollection.update(
+    //Viết hàm xóa sản phẩm vừa lấy khỏi session
+    await cartCollection.updateOne(
         { "id_user":ObjectID(user._id) },
-        { $pull: { products: { _id: id_product } } }
+        { $pull: { products: { _id: ObjectID(id_product) } } }
       );
 }
