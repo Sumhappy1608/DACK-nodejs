@@ -147,9 +147,15 @@
             {{/if}}
           </div>
 
+          {{#if user}}
           <div class="col-xs-6 col-sm-6">
-            <a class="btn btn-primary" href="../checkout/"> Checkout order </a>
+            <a class="btn btn-primary" href="/checkout"> Checkout order </a>
           </div>
+          {{else}} {{!--khi chưa có tài khoản --}}
+          <div class="col-xs-6 col-sm-6">
+            <a class="btn btn-primary" href="/login"> Checkout order </a>
+          </div>
+          {{/if}}
         </div>
       </div>
     </div>

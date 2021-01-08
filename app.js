@@ -17,6 +17,7 @@ const commentRouter = require('./routers/api/comments');
 const repasswordRouter = require('./routers/user/repassword');
 const forgot_passwordRouter = require('./routers/user/forgot_password');
 const cartRouter = require('./routers/cart');
+const checkoutRouter = require('./routers/checkout');
 
 
 require('./database/db');
@@ -80,6 +81,7 @@ app.use('/api/comment', commentRouter);
 app.use('/user', userRouter);
 app.use('/re-password', repasswordRouter);
 app.use('/forgot_password', forgot_passwordRouter);
+app.use('/checkout', checkoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
