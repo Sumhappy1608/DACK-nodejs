@@ -34,17 +34,17 @@
    
     {{#if user}}
     <div class="label">
-      <i class="ion-bag"></i> {{amount}}
+      <i class="ion-bag" onclick="showWindow()"></i> {{amount}}
     </div>
     {{else}} {{!--khi chưa có tài khoản --}}
     <div class="label">
-      <i class="ion-bag"></i> {{amount_cart}}
+      <i class="ion-bag" onclick="showWindow()"></i> {{amount_cart}}
     </div>
     {{/if}}
 
     <div class="overlay"></div>
 
-    <div class="window">
+    <div class="window" id="window" onload="hiddenWindow()">
       <div class="title">
         <button type="button" class="close"><i class="ion-android-close"></i></button>
         <h1 class="h3 info">Shopping cart</h1>
@@ -782,6 +782,7 @@
   <script src="../assets/js/bootstrap.min.js"></script>
   <script src="../assets/js/core.js"></script>
   <script src="../assets/js/catalog.js"></script>
+  <script src="../assets/js/cart.js"></script>
 
   <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.js"></script>
   <script type="text/javascript" src="../assets/js/jquery.ui.touch-punch.js"></script>
