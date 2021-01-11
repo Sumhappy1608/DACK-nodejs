@@ -57,23 +57,33 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VYY7V98EJJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VYY7V98EJJ');
+</script>
 </head>
 
 <body>
   <div class="cart" data-toggle="inactive">
     {{#if user}}
     <div class="label">
-      <i class="ion-bag"></i> {{amount}}
+      <i class="ion-bag" onclick="showWindow()"></i> {{amount}}
     </div>
     {{else}} {{!--khi chưa có tài khoản --}}
     <div class="label">
-      <i class="ion-bag"></i> {{amount_cart}}
+      <i class="ion-bag" onclick="showWindow()"></i> {{amount_cart}}
     </div>
     {{/if}}
 
     <div class="overlay"></div>
 
-    <div class="window">
+    <div class="window" id="window" onload="hiddenWindow()">
       <div class="title">
         <button type="button" class="close"><i class="ion-android-close"></i></button>
         <h1 class="h3 info">Shopping cart</h1>
@@ -150,15 +160,22 @@
         <div class="row">
           <div class="col-xs-3 col-sm-2">
             <div>
-              <p>Subtotal:</p>
+              {{!-- <p>Subtotal:</p> --}}
               <h3 class="h4">Total:</h3>
             </div>
           </div>
           <div class="col-xs-3 col-sm-4">
+            {{#if user}}
             <div class="total">
-              <p>VND {{total}}</p>
+              {{!-- <p>VND {{total}}</p> --}}
               <h3 class="h4">VND {{total}}</h3>
             </div>
+            {{else}} {{!--khi chưa có tài khoản --}}
+            <div class="total">
+              {{!-- <p>VND {{total_cart}}</p> --}}
+              <h3 class="h4">VND {{total_cart}}</h3>
+            </div>
+            {{/if}}
           </div>
 
           <div class="col-xs-6 col-sm-6">
@@ -857,6 +874,7 @@
   <script src="/../assets/js/carousel.js"></script>
   <script src="/../assets/js/commentProduct.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <script src="/../assets/js/cart.js"></script>
 </body>
 
 </html>

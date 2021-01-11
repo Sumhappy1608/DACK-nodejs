@@ -7,14 +7,15 @@ const passport = require('../passport');
 exports.index = async (req, res, next) => {
     const delivery = await checkoutModel.selectDelivery();
     const payment = await checkoutModel.selectPayment();
-    const address = await checkoutModel.selectDeliveryAddress(req.user);
-    console.log(address);
+    console.log(req.user);
     if(req.user != undefined || req.user != null)
     {
+        const address = await checkoutModel.selectDeliveryAddress(req.user);
         res.render('checkout', {delivery,payment, address});
     }
     else
     {
-        res.render('checkout', {delivery,payment});
+        //res.render('checkout', {delivery,payment});
+        res.redirect("/login");
     }
 }

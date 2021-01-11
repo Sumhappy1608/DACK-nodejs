@@ -27,6 +27,7 @@ exports.AddToCardCatalog = async (req, res, next) => {
         {
             total_session = total_session + parseFloat(product.price);
         }
+        total_session = total_session * 1000000;
         req.session.total = total_session;
         console.log(req.session.total);
     }
@@ -55,6 +56,7 @@ exports.AddToCardProduct = async (req, res, next) => {
         {
             total_session = total_session + parseFloat(product.price);
         }
+        total_session = total_session *1000000;
         req.session.total = total_session;
         console.log(req.session.total);
 

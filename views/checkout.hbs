@@ -63,8 +63,15 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="../login/"> <i class="ion-android-person"></i> Login </a></li>
-              <li><a href="../signup/"> Sign Up</a></li>
+              {{#if user}}
+              <!--User đang đăng nhập-->
+                <li><a href="/user"> <i class="ion-android-person"></i> {{user.user.username}} </a></li>
+                <li><a href="/login/logout"> Log out</a></li>
+              {{else}}
+              <!--User chưa đăng nhập-->
+                <li><a href="/login"> <i class="ion-android-person"></i> Login </a></li>
+                <li><a href="/signup"> Sign Up</a></li>
+              {{/if}}
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

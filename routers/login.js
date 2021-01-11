@@ -4,7 +4,7 @@ const router = express.Router();
 const login = require('../controllers/loginController');
 const loginForm = login.sendform;
 const passport = require('../passport');
-const connectEnsureLogin  = require('connect-ensure-login');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 router.get('/', loginForm);
 
 var back = require('express-back');
@@ -15,13 +15,11 @@ router.post('/login-action',
                                    failureFlash: false })
 );
 
-router.get('http://localhost:3000/checkout', connectEnsureLogin.ensureLoggedIn(), function(req, res){
-  //res.json({ user: req.user });
-  //console.log(req.originalUrl);
-  // var backURL = req.header('Referer') || '/';
-  //  res.json({redir: backURL});
-  res.redirect("/");
-});
+router.get('/checkout',
+  ensureLoggedIn('/login'),
+  function(req, res) {
+    res.json("bắt buộc ddawng nhập");
+  });
 
 // router.post('/login-action',
 //   passport.authenticate('local'),

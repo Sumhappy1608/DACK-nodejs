@@ -136,6 +136,7 @@ exports.updateTotal = async(user) =>{
             sum += parseFloat(product.price);
         }
     }
+    sum = sum * 1000000;
     sum = sum.toString();  //đổi số thành chuỗi
     console.log(sum);
 
