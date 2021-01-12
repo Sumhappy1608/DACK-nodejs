@@ -30,3 +30,9 @@ exports.selectDeliveryAddress = async(user) => {
     }
     return a;
 }
+
+exports.selectTotal = async(user) => {
+    const cartCollection = db().collection("cart");
+    const cart = await cartCollection.findOne({"id_user": ObjectID(user._id),"isCheckout":false});
+    return cart.total;
+}

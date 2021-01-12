@@ -11,7 +11,8 @@ exports.index = async (req, res, next) => {
     if(req.user != undefined || req.user != null)
     {
         const address = await checkoutModel.selectDeliveryAddress(req.user);
-        res.render('checkout', {delivery,payment, address});
+        const total = await checkoutModel.selectTotal(req.user);
+        res.render('checkout', {delivery,payment, address,total});
     }
     else
     {

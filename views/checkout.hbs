@@ -467,7 +467,7 @@
                         <div class="row"> 
                             {{#each delivery}}
                             <div class="col-md-6">
-                                <div class="box-default sm-padding" data-style="">
+                                <div class="box-default sm-padding" data-style="" data-value="{{_id}}">
                                     <hr class="offset-sm">
                                     <img src="{{image}}" title="{{name}}" alt="{{name}}" />
                                     <span>&nbsp;&nbsp;{{working_days}} working days</span>
@@ -597,12 +597,12 @@
                   <div class="container-fluid">
                       <div class="row">
                           <div class="col-xs-6">
-                              <p>Subtotal (7 items)</p>
+                              <p>Subtotal</p>
                               <p>Discount</p>
                               <p>Delivery</p>
                           </div>
                           <div class="col-xs-6">
-                              <p><b>$1499</b></p>
+                              <p><b>VND {{total}}</b></p>
                               <p><b>$0</b></p>
                               <p><b>$0</b></p>
                           </div>
