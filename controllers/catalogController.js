@@ -18,7 +18,7 @@ exports.searchbyName = async (req, res, next) => {
     {
         type = '';
     }
-    const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand);
+    const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand, req.query.minPrice, req.query.maxPrice);
     
     //console.log(req.user);
     if(req.user != undefined )
@@ -73,7 +73,9 @@ exports.searchbyName = async (req, res, next) => {
                     laptop_brand: brand,
                     products: products_cart.products,
                     total: products_cart.total,
-                    amount: amount_products
+                    amount: amount_products,
+                    minPrice: req.query.minPrice,
+                    maxPrice: req.query.maxPrice
                 });
             }
         }
@@ -91,7 +93,9 @@ exports.searchbyName = async (req, res, next) => {
                 searchName: req.query.searchName,
                 laptop_type: type,
                 laptop_brand: brand,
-                amount: amount_products
+                amount: amount_products,
+                minPrice: req.query.minPrice,
+                maxPrice: req.query.maxPrice
             });
         }
     }
@@ -108,6 +112,8 @@ exports.searchbyName = async (req, res, next) => {
             pages: returnObject.pages,
             searchName: req.query.searchName,
             laptop_type: type,
-            laptop_brand: brand});
+            laptop_brand: brand,
+            minPrice: req.query.minPrice,
+            maxPrice: req.query.maxPrice});
     }
 }

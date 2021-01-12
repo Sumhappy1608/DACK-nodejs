@@ -7,7 +7,7 @@ router.get('/', catalogController.searchbyName);
 
 //router.get('/:page', catalogController.paginate);
 router.get('/search-action', (req, res) => {
-    res.redirect('/catalog/?page=' + req.query.page + '&laptop_type=' + req.query.laptop_type + '&laptop_brand=' + req.query.laptop_brand + '&searchName=' + req.query.searchName);
+    res.redirect('/catalog/?page=' + req.query.page + '&laptop_type=' + req.query.laptop_type + '&laptop_brand=' + req.query.laptop_brand + '&searchName=' + req.query.searchName +'&minPrice=' + req.query.minPrice + '&maxPrice=' + req.query.maxPrice);
 });
 router.get('/product', (req, res) => {
     let id = req.query.product;

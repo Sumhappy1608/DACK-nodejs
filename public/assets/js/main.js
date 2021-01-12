@@ -78,3 +78,23 @@ function ChangeImage(image_link){
     var image = document.getElementById('image-info');
     image.src = image_link;
 }
+
+function isValidPrice(){
+    var min = parseInt(document.getElementById("minPrice").value);
+    var max = parseInt(document.getElementById("maxPrice").value);
+    if(min > max){
+        $('#errorNotice').text("Giá nhỏ nhất phải bé hơn hoặc bằng giá lớn nhất");
+        document.getElementById('submitButton').disabled = true;
+        alert(min);
+        alert(max);
+    }
+    else if(Math.sign(min) == -1 || Math.sign(max) == -1)
+    {
+        $('#errorNotice').text("Không được nhập giá trị âm");
+        document.getElementById('submitButton').disabled = true;
+    }
+    else{
+        $('#errorNotice').empty();
+        document.getElementById('submitButton').disabled = false;
+    }
+}

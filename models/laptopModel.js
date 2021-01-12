@@ -17,7 +17,7 @@ exports.get = async (id) => {
 }
 
 /*Search By Name*/
-exports.searchName = async(page, nameV, typeV, brandV) => {
+exports.searchName = async(page, nameV, typeV, brandV, min, max) => {
     const laptopCollection = db().collection('laptops');
     let perPage = 5;
     let Page = +page || 1;
@@ -31,23 +31,90 @@ exports.searchName = async(page, nameV, typeV, brandV) => {
     {
         typeV = '';
     }
-
+    if (min == null){
+        min = 0;
+    }
+    if (max == null){
+        max = 100000000;
+    }
+    console.log(min);
+    console.log(max);
     if(nameV){
-        pages = Math.ceil(await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}).count() / perPage);
-        laptops = await laptopCollection.find({name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({$and: 
+            [
+                {
+                    name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, 
+                    brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }).count() / perPage);
+        
+        laptops = await laptopCollection.find({$and: 
+            [
+                {
+                    name: {$regex : ".*" + nameV + ".*"}, type: {$regex : ".*" + typeV + ".*"}, 
+                    brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
     else if (!nameV && (brandV || typeV))
     {
-        pages = Math.ceil(await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}).count() / perPage);
-        laptops = await laptopCollection.find({type: {$regex : ".*" + typeV + ".*"}, brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({$and:
+            [
+                {
+                    type: {$regex: ".*" + typeV + ".*"}, 
+                    brand: {$regex: ".*" + brandV + ".*"}, delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }).count() / perPage);
+        
+        laptops = await laptopCollection.find({$and:
+            [
+                {
+                    type: {$regex : ".*" + typeV + ".*"}, 
+                    brand: {$regex : ".*" + brandV + ".*"}, delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
     else{
-        pages = Math.ceil(await laptopCollection.find({delete_flag: false}).count() / perPage);
-        laptops = await laptopCollection.find({delete_flag: false}) // find tất cả các data
+        pages = Math.ceil(await laptopCollection.find({$and:
+            [
+                {
+                    delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }).count() / perPage);
+        laptops = await laptopCollection.find({$and:
+            [
+                {
+                    delete_flag: false, priceCal: {$gte: parseInt(min)}
+                },
+                {
+                    priceCal: {$lte: parseInt(max)}
+                }
+            ]
+        }) // find tất cả các data
         .skip((perPage * Page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
         .limit(perPage).toArray();
     }
