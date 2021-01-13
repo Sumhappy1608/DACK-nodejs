@@ -7,7 +7,6 @@ const passport = require('../passport');
 exports.index = async (req, res, next) => {
     const delivery = await checkoutModel.selectDelivery();
     const payment = await checkoutModel.selectPayment();
-    console.log(req.user);
     if(req.user != undefined || req.user != null)
     {
         const address = await checkoutModel.selectDeliveryAddress(req.user);
@@ -22,7 +21,7 @@ exports.index = async (req, res, next) => {
 }
 
 exports.confirm = async (req, res, next) => {
-    // const delivery = req.body.delivery;
-    // console.log(delivery);
-    console.log("đã có delivery");
+    console.log(req.query.delivery);  // ID Delivery
+    console.log(req.query.payment);   // ID Payment
+    res.redirect('/checkout');
 }

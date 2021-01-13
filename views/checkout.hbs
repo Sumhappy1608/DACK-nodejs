@@ -97,7 +97,7 @@
     </div>
   </div>
   <hr class="offset-md">
-  <form action="/checkout/confirm" method="POST"></form>
+  <form action="/checkout/confirm" method="GET">
   <div class="container">
     <div class="row">
 
@@ -472,14 +472,6 @@
                     </div>
                   </div>
                 </div>
-
-                {{!-- <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="">
-                    Use as billing address
-                  </label>
-                </div> --}}
-
                 <hr class="offset-sm">
                 <hr>
               </div>
@@ -491,61 +483,15 @@
                 <div class="row">
                   {{#each delivery}}
                   <div class="col-md-6">
-                    <div class="box-default sm-padding" name="delivery" data-style="" data-value="{{_id}}">
+                    <div class="box-default sm-padding">
                       <hr class="offset-sm">
                       <img src="{{image}}" title="{{name}}" alt="{{name}}" />
                       <span>&nbsp;&nbsp;{{working_days}} working days</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
+                      <input type="radio" value="{{_id}}" name="delivery"></input>
                       <hr class="offset-sm">
                     </div>
                   </div>
                   {{/each}}
-                  {{!-- <div class="col-md-6">
-                    <div class="box-default sm-padding" data-style="selected">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/shipping/fedex.jpg" title="fedex" alt="fedex" />
-                      <span>&nbsp;&nbsp;2-3 working days</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="box-default sm-padding">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/shipping/dhl.jpg" title="dhl" alt="dhl" />
-                      <span>&nbsp;&nbsp;5-10 working days</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="box-default sm-padding">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/shipping/ems.jpg" title="ems" alt="ems" />
-                      <span>&nbsp;&nbsp;5-10 working days</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="box-default sm-padding">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/shipping/ups.jpg" title="ups" alt="ups" />
-                      <span>&nbsp;&nbsp;12-14 working days</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div> --}}
                 </div>
 
 
@@ -560,39 +506,15 @@
                 <div class="row">
                   {{#each payment}}
                   <div class="col-md-6">
-                    <div class="box-default sm-padding" name="payment" data-style="" data-value="{{_id}}">
+                    <div class="box-default sm-padding">
                       <hr class="offset-sm">
                       <img src="{{image}}" title="{{name}}" alt="{{name}}" />
                       <span>&nbsp;&nbsp;{{fee}}% Service fee</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
+                      <input type="radio" value="{{_id}}" name="payment"></input>
                       <hr class="offset-sm">
                     </div>
                   </div>
                   {{/each}}
-                  {{!-- <div class="col-md-6">
-                    <div class="box-default sm-padding" data-style="selected">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/payments/paypal.jpg" title="paypal" alt="paypal" />
-                      <span>&nbsp;&nbsp;0% Service fee</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="box-default sm-padding">
-                      <hr class="offset-sm">
-                      <img src="../assets/img/payments/stripe.jpg" title="stripe" alt="stripe" />
-                      <span>&nbsp;&nbsp;1% Service fee</span>
-                      <div class="check">
-                        <i class="ion-checkmark-round"></i>
-                      </div>
-                      <hr class="offset-sm">
-                    </div>
-                  </div> --}}
                 </div>
 
 
@@ -665,8 +587,7 @@
             </div>
             <hr class="offset-md">
 
-            <button type="submit" class="btn btn-primary btn-lg justify"><i class="ion-compose"></i>&nbsp;&nbsp; Confirm
-              order</button>
+            <button type="submit" class="btn btn-primary btn-lg justify" value=""><i class="ion-compose"></i>   Confirm order</button>
           </div>
         </div>
       </div>

@@ -5,6 +5,6 @@ const checkout = checkoutController.index;
 
 router.get('/', checkout);
 
-router.post("/confirm", checkoutController.confirm);
+router.get('/confirm', checkoutController.confirm);
 
 module.exports = router;
