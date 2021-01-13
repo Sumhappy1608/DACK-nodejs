@@ -3,6 +3,7 @@ const cartModel = require('../models/cartModel');
 const laptopModel = require('../models/laptopModel');
 const passport = require('../passport');
 const cartItem = [];
+const isRemove = false;
 
 exports.AddToCardCatalog = async (req, res, next) => {
     let id = req.query.product;
@@ -13,7 +14,8 @@ exports.AddToCardCatalog = async (req, res, next) => {
         // {
         //     await cartModel.addProduct_Session(cart,req.user._id);
         // }
-        await cartModel.addProduct(laptop,req.user._id);
+
+        await cartModel.addProduct(laptop, req.user._id);
     }
     else
     {
@@ -69,7 +71,18 @@ exports.removeProduct = async (req, res, next) => {
     const id = req.query.id_product;
     if(req.user != undefined)
     {
+        if (req.session.cart != undefined || req.session.cart != null) {
+            let i = 0;
+            for (const item of req.session.cart) {
+                if (item._id == ObjectID(id)) {
+                    req.session.cart.splice(i, 1);
+                }
+                i = i + 1;
+            }
+        }
         await cartModel.deleteProduct(id,req.user);
+        req.session.amount = req.session.cart.length;
+        //isRemove = true;
     }
     else
     {
@@ -92,6 +105,7 @@ exports.removeProduct = async (req, res, next) => {
         }
         req.session.total = total_session;
         console.log(req.session.total);
+        //isRemove = true;
     }
     res.redirect('back');  //trả lại trang hiện có
 } 

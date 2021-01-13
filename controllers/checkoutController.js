@@ -20,3 +20,9 @@ exports.index = async (req, res, next) => {
         res.redirect("/login");
     }
 }
+
+exports.confirm = async (req, res, next) => {
+    // const delivery = req.body.delivery;
+    // console.log(delivery);
+    console.log("đã có delivery");
+}
