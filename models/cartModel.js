@@ -138,3 +138,10 @@ exports.deleteProduct = async(id_product,user) =>{
         { $pull: { products: { _id: ObjectID(id_product) } } }
       );
 }
+
+exports.UpdateIsCheckout = async(id_cart) =>{
+    const cartCollection = db().collection("cart");
+    //Viết hàm xóa sản phẩm vừa lấy khỏi session
+    await cartCollection.updateOne({"_id": ObjectID(id_cart), "isCheckout": false}, {$set: {"isCheckout": true}});
+}
+

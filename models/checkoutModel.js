@@ -68,6 +68,7 @@ exports.confirmOrder = async(id_delivery, id_payment, address, user, remark) => 
             "status": "đã nhận đơn hàng"
         }
         const checkout = await checkoutCollection.insertOne(order);
+        //await cartCollection.updateOne({"_id": ObjectID(cart._id), "isCheckout": false}, {$set: {"isCheckout": true}});
     }
 }
 

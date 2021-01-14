@@ -21,14 +21,31 @@ exports.index = async (req, res, next) => {
 }
 
 exports.confirm = async (req, res, next) => {
-    console.log(req.query.delivery);  // ID Delivery
-    console.log(req.query.payment);   // ID Payment
-    console.log(req.query.address);  
-    console.log(req.user);
-    console.log(req.query.remark);
-    if(req.query.delivery !=undefined && req.query.payment!=undefined&& req.query.address!=undefined && req.user)
+    // console.log(req.query.delivery);  // ID Delivery
+    // console.log(req.query.payment);   // ID Payment
+    // console.log(req.query.address);  
+
+    const temp = (req.query.building + " building " + req.query.street + " street " + req.query.city + " city " + req.query.country + ", " + req.query.zip).toString();
+    // console.log(temp);
+    if(temp != undefined)
     {
-        await checkoutModel.confirmOrder(req.query.delivery, req.query.payment,req.query.address, req.user, req.query.remark);
+        var addr = temp;
+    }
+    else if(req.query.address != undefined){
+        var addr = req.query.address;
+    }
+    
+    if(req.query.delivery !=undefined && req.query.payment!=undefined && addr!=undefined && req.user)
+    {
+        await checkoutModel.confirmOrder(req.query.delivery, req.query.payment, addr, req.user, req.query.remark);
+        const delivery = await checkoutModel.selectOneDelivery(req.query.delivery);
+        const payment = await checkoutModel.selectOnePayment(req.query.payment);
+        const cart = await checkoutModel.selectOneCart(req.user);
+        res.render('checkout_success', { delivery: delivery.name, payment: payment.name, address: addr, total: cart.total, remark: req.query.remark });
+    }
+    else
+    {
+        res.render('checkout_fail');
     }
 
     // const checkout = await checkoutModel.selectOneCheckout(req.user);
@@ -38,11 +55,6 @@ exports.confirm = async (req, res, next) => {
     //     const payment = await checkoutModel.selectOnePayment(checkout.id_payment);
     //     const cart = await checkoutModel.selectOneCart(checkout.id_user);
     //     res.render('checkout_success',{delivery: delivery.name, payment: payment.name, address: req.query.address, total: cart.total,remark:checkout.remark});
-    // }
-
-    const delivery = await checkoutModel.selectOneDelivery(req.query.delivery);
-    const payment = await checkoutModel.selectOnePayment(req.query.payment);
-    const cart = await checkoutModel.selectOneCart(req.user);
-    res.render('checkout_success',{delivery: delivery.name, payment: payment.name, address: req.query.address, total: cart.total,remark:req.query.remark});
+    // } 
 }
 
