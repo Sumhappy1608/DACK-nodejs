@@ -364,11 +364,12 @@
               <h1 class="h4">Price</h1>
             </div>
 
-            <div class="controls">
-              <br>
-              <div id="slider-price"></div>
-              <br>
-              <p id="amount"></p>
+             <div class="form-group">
+              <label>Min price</label>
+              <input id="minPrice" name="minPrice" type="number" class="form-control" value="0" onchange="isValidPrice()" required></input>
+              <label style="margin-top: 10px;">Max price</label>
+              <input id="maxPrice" name="maxPrice" type="number" class="form-control" value="100000000" onchange="isValidPrice()" required></input>
+              <label id="errorNotice" style="color: red; margin-top: 10px;"></label>
             </div>
           </div>
           <br>
@@ -462,27 +463,27 @@
     <nav>
       <ul class="pagination">
               {{#if first}}
-                <li><a href="/catalog/?page=1&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">First</a></li>
+                <li><a href="/catalog/?page=1&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}">First</a></li>
               {{/if}}
               {{#if prev}}
                 <li>
-                  <a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}" aria-label="Previous">
+                  <a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}" aria-label="Previous">
                     <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
                   </a>
                 </li>
-                <li><a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">{{prevPage}}</a></li>
+                 <li><a href="/catalog/?page={{prevPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}">{{prevPage}}</a></li>
               {{/if}}
                 <li><a class="active" href="/catalog/?page={{page}}">{{page}}</a></li>
               {{#if next}}
-                <li><a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">{{nextPage}}</a></li>
+                 <li><a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}">{{nextPage}}</a></li>
                 <li>
-                <a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}" aria-label="Next">
+                 <a href="/catalog/?page={{nextPage}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}" aria-label="Next">
                   <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
                 </a>
               </li>
               {{/if}}
               {{#if last}}
-                <li><a href="/catalog/?page={{pages}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}">Last</a></li>
+                <li><a href="/catalog/?page={{pages}}&searchName={{searchName}}&laptop_type={{laptop_type}}&laptop_brand={{laptop_brand}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}">Last</a></li>
               {{/if}}
             </ul>
     </nav>
@@ -793,6 +794,7 @@
   <script src="../assets/js/core.js"></script>
   <script src="../assets/js/catalog.js"></script>
   <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
 
   <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.js"></script>
   <script type="text/javascript" src="../assets/js/jquery.ui.touch-punch.js"></script>
