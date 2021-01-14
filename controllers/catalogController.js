@@ -10,6 +10,16 @@ exports.index = async (req, res, next) => {
 exports.searchbyName = async (req, res, next) => {
     var brand = req.query.laptop_brand;
     var type = req.query.laptop_type;
+    var minPrice = req.query.minPrice;
+    var maxPrice = req.query.maxPrice;
+    if (minPrice == null)
+    {
+        minPrice = 0;
+    }
+    if (maxPrice == null)
+    {
+        maxPrice = 100000000
+    }
     if (brand == "All Brand" || brand == "Brand")
     {
         brand = '';
@@ -18,7 +28,7 @@ exports.searchbyName = async (req, res, next) => {
     {
         type = '';
     }
-    const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand, req.query.minPrice, req.query.maxPrice);
+    const returnObject = await laptopModel.searchName(req.query.page, req.query.searchName, type, brand, minPrice, maxPrice);
     
     //console.log(req.user);
     if(req.user != undefined )
@@ -74,8 +84,8 @@ exports.searchbyName = async (req, res, next) => {
                     products: products_cart.products,
                     total: products_cart.total,
                     amount: amount_products,
-                    minPrice: req.query.minPrice,
-                    maxPrice: req.query.maxPrice
+                    minPrice: minPrice,
+                    maxPrice: maxPrice
                 });
             }
         }
@@ -94,8 +104,8 @@ exports.searchbyName = async (req, res, next) => {
                 laptop_type: type,
                 laptop_brand: brand,
                 amount: amount_products,
-                minPrice: req.query.minPrice,
-                maxPrice: req.query.maxPrice
+                minPrice: minPrice,
+                maxPrice: maxPrice
             });
         }
     }
@@ -113,7 +123,7 @@ exports.searchbyName = async (req, res, next) => {
             searchName: req.query.searchName,
             laptop_type: type,
             laptop_brand: brand,
-            minPrice: req.query.minPrice,
-            maxPrice: req.query.maxPrice});
+            minPrice: minPrice,
+            maxPrice: maxPrice});
     }
 }

@@ -31,14 +31,6 @@ exports.searchName = async(page, nameV, typeV, brandV, min, max) => {
     {
         typeV = '';
     }
-    if (min == null){
-        min = 0;
-    }
-    if (max == null){
-        max = 100000000;
-    }
-    console.log(min);
-    console.log(max);
     if(nameV){
         pages = Math.ceil(await laptopCollection.find({$and: 
             [

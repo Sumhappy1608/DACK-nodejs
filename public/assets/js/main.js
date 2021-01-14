@@ -82,6 +82,14 @@ function ChangeImage(image_link){
 function isValidPrice(){
     var min = parseInt(document.getElementById("minPrice").value);
     var max = parseInt(document.getElementById("maxPrice").value);
+    if (!min)
+    {
+        min = 0;
+    }
+    if (!max)
+    {
+        max = 100000000
+    }
     if(min > max){
         $('#errorNotice').text("Giá nhỏ nhất phải bé hơn hoặc bằng giá lớn nhất");
         document.getElementById('submitButton').disabled = true;
