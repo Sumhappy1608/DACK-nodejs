@@ -58,7 +58,7 @@ exports.searchbyName = async (req, res, next) => {
                 await cartModel.addProduct_user(temp,req.user);
             }
         }
-        await cartModel.updateTotal(req.user);
+        //await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
         let amount_products = 0;
         
@@ -69,6 +69,7 @@ exports.searchbyName = async (req, res, next) => {
                 for (const product of products_cart.products) {
                     amount_products = amount_products + 1;
                 }
+                await cartModel.updateTotal(req.user);
                 res.render('books/catalog', {laptops: returnObject.laptops,
                     first: returnObject.first,
                     prev: returnObject.prev,
@@ -83,6 +84,25 @@ exports.searchbyName = async (req, res, next) => {
                     laptop_brand: brand,
                     products: products_cart.products,
                     total: products_cart.total,
+                    amount: amount_products,
+                    minPrice: minPrice,
+                    maxPrice: maxPrice
+                });
+            }
+            else
+            {
+                res.render('books/catalog', {laptops: returnObject.laptops,
+                    first: returnObject.first,
+                    prev: returnObject.prev,
+                    prevPage: returnObject.prevPage,
+                    page: returnObject.Page,
+                    next: returnObject.next,
+                    nextPage: returnObject.nextPage,
+                    last: returnObject.last,
+                    pages: returnObject.pages,
+                    searchName: req.query.searchName,
+                    laptop_type: type,
+                    laptop_brand: brand,
                     amount: amount_products,
                     minPrice: minPrice,
                     maxPrice: maxPrice

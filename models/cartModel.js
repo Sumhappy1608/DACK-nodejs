@@ -85,7 +85,7 @@ exports.addProduct_user = async(product, user) => {
         total: "0"
     }
     
-    if(!cart || cart.isCheckout == "1")
+    if(!cart || cart.isCheckout == true)
     {
         //console.log("chưa có giỏ hàng");
         cartCollection.insertOne(cartNewRecord, function (err,res) {
@@ -116,19 +116,18 @@ exports.selectProduct = async(user) => {
 exports.updateTotal = async(user) =>{
     const cartCollection = db().collection("cart");
     const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": false});
-    //console.log(products_cart.products);
+    console.log(products_cart.products);
     let sum = 0;
     if(products_cart.products != null || products_cart.products != undefined)
     {
         for (const product of products_cart.products) {  
             sum += parseFloat(product.price);
         }
+        sum = sum * 1000000;
+        sum = sum.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi
+        await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": false}, {$set: {"total":sum}});
     }
-    sum = sum * 1000000;
-    sum = sum.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi
     //console.log(sum);
-
-    await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": false}, {$set: {"total":sum}});
 }
 
 exports.deleteProduct = async(id_product,user) =>{
