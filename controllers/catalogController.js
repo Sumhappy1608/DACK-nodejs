@@ -58,7 +58,7 @@ exports.searchbyName = async (req, res, next) => {
                 await cartModel.addProduct_user(temp,req.user);
             }
         }
-        //await cartModel.updateTotal(req.user);
+        await cartModel.updateTotal(req.user);
         const products_cart = await cartModel.selectProduct(req.user);
         let amount_products = 0;
         

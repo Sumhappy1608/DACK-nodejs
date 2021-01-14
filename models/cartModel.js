@@ -116,7 +116,7 @@ exports.selectProduct = async(user) => {
 exports.updateTotal = async(user) =>{
     const cartCollection = db().collection("cart");
     const products_cart = await cartCollection.findOne({"id_user": ObjectID(user._id), "isCheckout": false});
-    console.log(products_cart.products);
+    //console.log(products_cart.products);
     let sum = 0;
     if(products_cart.products != null || products_cart.products != undefined)
     {
