@@ -32,7 +32,7 @@ exports.index = async (req, res, next) => {
                     type: product.type,
                     view: product.view
                 }
-                console.log(temp._id);
+                //console.log(temp._id);
                 await cartModel.addProduct_user(temp,req.user);
             }
         }
