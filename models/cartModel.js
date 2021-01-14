@@ -28,14 +28,14 @@ exports.addProduct = async(product, id_user) => {
     // console.log(cart);
     if(!cart || cart.isCheckout == "1")
     {
-        console.log("chưa có giỏ hàng");
+       //console.log("chưa có giỏ hàng");
         cartCollection.insertOne(cartNewRecord, function (err,res) {
-            console.log('Them thanh cong');
+            //console.log('Them thanh cong');
         });
     }
     else
     {
-        console.log("đã có giỏ hàng");
+        //console.log("đã có giỏ hàng");
         cartCollection.updateOne(
             { "id_user": ObjectID(id_user)},
             {
@@ -59,18 +59,6 @@ exports.addProduct_Session = async(cart, id_user) => {
         }
     );
 }
-
-// exports.addProduct_user = async(cart, user) => {
-//     const cartCollection = db().collection("cart");
-//     cartCollection.updateOne(
-//         { "id_user": ObjectID(user._id)},
-//         {
-//             $addToSet: {
-//                 "products": {$each : cart}
-//             }
-//         }
-//     );
-// }
 
 exports.addProduct_user = async(product, user) => {
 
@@ -99,14 +87,14 @@ exports.addProduct_user = async(product, user) => {
     
     if(!cart || cart.isCheckout == "1")
     {
-        console.log("chưa có giỏ hàng");
+        //console.log("chưa có giỏ hàng");
         cartCollection.insertOne(cartNewRecord, function (err,res) {
-            console.log('Them thanh cong');
+            //console.log('Them thanh cong');
         });
     }
     else
     {
-        console.log("đã có giỏ hàng");
+        //console.log("đã có giỏ hàng");
         cartCollection.updateOne(
             { "id_user": ObjectID(user._id)},
             {
@@ -137,8 +125,8 @@ exports.updateTotal = async(user) =>{
         }
     }
     sum = sum * 1000000;
-    sum = sum.toString();  //đổi số thành chuỗi
-    console.log(sum);
+    sum = sum.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi
+    //console.log(sum);
 
     await cartCollection.updateOne({"id_user": ObjectID(user._id), "isCheckout": false}, {$set: {"total":sum}});
 }

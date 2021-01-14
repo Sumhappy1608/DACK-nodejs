@@ -119,9 +119,10 @@
                     <i class="ion-ios-location"></i> {{address}}
                   </p>
 
-                  <div class="check">
+                  {{!-- <div class="check">
                     <i class="ion-checkmark-round"></i>
-                  </div>
+                  </div> --}}
+                  <input type="radio" value="{{address}}" name="address"></input>
                   <hr class="offset-sm">
                 </address>
                 {{/each}}
@@ -174,7 +175,7 @@
 
                           <div class="group-select justify" tabindex='1'>
                             <input class="form-control select" id="country" name="country" value="United Kingdom"
-                              placeholder="" required="" />
+                              placeholder="" />
 
                             <ul class="dropdown">
                               <li data-value="Aaland Islands">Aaland Islands</li>
@@ -444,28 +445,28 @@
                         <div class="col-sm-4">
                           <p>City</p>
 
-                          <input type="text" class="form-control input-sm" name="city" value="" required=""
+                          <input type="text" class="form-control input-sm" name="city" value="" 
                             placeholder="" />
                         </div>
                         <div class="col-sm-4">
                           <hr class="offset-sm visible-xs">
                           <p>Street</p>
 
-                          <input type="text" class="form-control input-sm" name="street" value="" required=""
+                          <input type="text" class="form-control input-sm" name="street" value=""
                             placeholder="" />
                         </div>
                         <div class="col-sm-2">
                           <hr class="offset-sm visible-xs">
                           <p>Building</p>
 
-                          <input type="text" class="form-control input-sm" name="bilding" value="" required=""
+                          <input type="text" class="form-control input-sm" name="bilding" value="" 
                             placeholder="" />
                         </div>
                         <div class="col-sm-2">
                           <hr class="offset-sm visible-xs">
                           <p>Zip</p>
 
-                          <input type="text" class="form-control input-sm" name="zip" value="" required=""
+                          <input type="text" class="form-control input-sm" name="zip" value="" 
                             placeholder="" />
                         </div>
                       </div>
@@ -544,18 +545,18 @@
               <div class="row">
                 <div class="col-xs-6">
                   <p>Subtotal</p>
-                  <p>Discount</p>
-                  <p>Delivery</p>
+                  {{!-- <p>Discount</p>
+                  <p>Delivery</p> --}}
                 </div>
                 <div class="col-xs-6">
                   <p><b>VND {{total}}</b></p>
-                  <p><b>$0</b></p>
-                  <p><b>$0</b></p>
+                  {{!-- <p><b>$0</b></p>
+                  <p><b>$0</b></p> --}}
                 </div>
               </div>
             </div>
 
-            <div class="checkboxes">
+            {{!-- <div class="checkboxes">
               <div class="radio">
                 <label>
                   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -572,7 +573,7 @@
                 <hr class="offset-sm">
               </div>
 
-            </div>
+            </div> --}}
             <hr>
 
             <div class="container-fluid">
@@ -581,17 +582,16 @@
                   <h3 class="no-margin">Total sum</h3>
                 </div>
                 <div class="col-xs-6">
-                  <h3 class="no-margin">$1499</h3>
+                  <h3 class="no-margin">VND {{total}}</h3>
                 </div>
               </div>
             </div>
             <hr class="offset-md">
 
-            <button type="submit" class="btn btn-primary btn-lg justify" value=""><i class="ion-compose"></i>   Confirm order</button>
+            <button type="submit" class="btn btn-primary btn-lg justify" value=""><i class="ion-compose"></i>Confirm order</button>
           </div>
         </div>
       </div>
-
     </div>
   </div>
   </form>

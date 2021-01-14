@@ -30,8 +30,8 @@ exports.AddToCardCatalog = async (req, res, next) => {
             total_session = total_session + parseFloat(product.price);
         }
         total_session = total_session * 1000000;
-        req.session.total = total_session;
-        console.log(req.session.total);
+        req.session.total = total_session.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi;
+        // console.log(req.session.total);
     }
     res.redirect('back');  //trả lại trang hiện có
 }
@@ -59,8 +59,8 @@ exports.AddToCardProduct = async (req, res, next) => {
             total_session = total_session + parseFloat(product.price);
         }
         total_session = total_session *1000000;
-        req.session.total = total_session;
-        console.log(req.session.total);
+        req.session.total = total_session.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi;
+        // console.log(req.session.total);
 
     }
     //res.redirect('/product?product=' + req.query.product);
@@ -103,8 +103,8 @@ exports.removeProduct = async (req, res, next) => {
             product.price = parseFloat(product.price);
             total_session = total_session + product.price;
         }
-        req.session.total = total_session;
-        console.log(req.session.total);
+        req.session.total = total_session.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');;  //đổi số thành chuỗi;
+        // console.log(req.session.total);
         //isRemove = true;
     }
     res.redirect('back');  //trả lại trang hiện có
